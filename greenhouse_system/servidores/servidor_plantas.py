@@ -13,31 +13,58 @@ async def main():
     async with server:
         print(f"Servidor plantas escuchando en {endpoint}")
 
-        # Crear objeto manualmente bajo Objects
-        plantas_obj = await server.nodes.objects.add_object(idx, "EstadoPlantas")
+        # Lista de especies a simular
+        especies = [
+            {"nombre": "Tomate", "humedad_obj": 70.0, "ph_obj": 6.5},
+            {"nombre": "Lechuga", "humedad_obj": 65.0, "ph_obj": 6.0},
+            {"nombre": "Pimiento", "humedad_obj": 68.0, "ph_obj": 6.2}
+        ]
 
-        # Variables operacionales
-        crecimiento = await plantas_obj.add_variable(idx, "Crecimiento", 15.0)
-        salud = await plantas_obj.add_variable(idx, "Salud", 85.0)
+        objetos_plantas = []
 
-        # Propiedades (opcional)
-        especie = await plantas_obj.add_property(idx, "EspeciePlanta", "Tomate")
-        dias_siembra = await plantas_obj.add_property(idx, "DiasDesdeSiembra", 0)
-        parametros_optimos = await plantas_obj.add_property(idx, "ParametrosOptimos", "{}")
+        for especie_info in especies:
+            obj = await server.nodes.objects.add_object(idx, f"Planta_{especie_info['nombre']}")
+            
+            # Variables dinámicas
+            crecimiento = await obj.add_variable(idx, "Crecimiento", random.uniform(10, 20))
+            cantidad_frutos = await obj.add_variable(idx, "CantidadFrutos", 0)
+            calidad_frutos = await obj.add_variable(idx, "CalidadFrutos", 0.0)
 
-        # Permitir escritura en las variables
-        await crecimiento.set_writable()
-        await salud.set_writable()
+            # Variable estática
+            especie_var = await obj.add_variable(idx, "EspeciePlanta", especie_info["nombre"])
 
+            # Propiedades constantes
+            humedad_obj = await obj.add_property(idx, "HumedadObjetivo", especie_info["humedad_obj"])
+            ph_obj = await obj.add_property(idx, "PHObjetivo", especie_info["ph_obj"])
+
+            # Hacer variables dinámicas escribibles
+            await crecimiento.set_writable()
+            await cantidad_frutos.set_writable()
+            await calidad_frutos.set_writable()
+
+            objetos_plantas.append({
+                "crecimiento": crecimiento,
+                "cantidad_frutos": cantidad_frutos,
+                "calidad_frutos": calidad_frutos
+            })
+
+        # Loop de actualización de valores
         while True:
-            # Simulación dinámica
-            current_crec = await crecimiento.get_value()
-            crecimiento_val = min(100, current_crec + random.uniform(0, 1))
-            await crecimiento.write_value(float(round(crecimiento_val, 2)))
+            for planta in objetos_plantas:
+                # Crecimiento: +0.1 a +0.5 cm por ciclo, hasta 100 cm
+                current_crec = await planta["crecimiento"].get_value()
+                new_crec = min(100, current_crec + random.uniform(0.1, 0.5))
+                await planta["crecimiento"].write_value(float(round(new_crec, 2)))
 
-            current_salud = await salud.get_value()
-            salud_val = max(0, min(100, current_salud + random.uniform(-5, 5)))
-            await salud.write_value(float(round(salud_val, 2)))
+                # Cantidad de frutos: aleatorio entre 0 y 20, aumenta gradualmente
+                current_frutos = await planta["cantidad_frutos"].get_value()
+                new_frutos = min(20, current_frutos + random.randint(0, 2))
+                await planta["cantidad_frutos"].write_value(int(new_frutos))
+
+                # Calidad frutos: entre 50 y 100, variación aleatoria
+                current_calidad = await planta["calidad_frutos"].get_value()
+                new_calidad = max(50, min(100, current_calidad + random.uniform(-2, 2)))
+                await planta["calidad_frutos"].write_value(float(round(new_calidad, 2)))
 
             await asyncio.sleep(3)
 

@@ -64,12 +64,14 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
-### 7. Configurar la base de datos
+### 7. Configurar la base de datos solo una vez
 ```bash
 python database/database_setup.py
 ```
 
-### 8. Ejecutar servidores en terminales separadas
+### 8. Ejecutar servidores en terminales separadas 
+
+OJO: Con el entorno virtual activo en las tres terminales.
 
 - Terminal 1: Servidor Clima
 ```bash
@@ -86,14 +88,22 @@ python servidores/servidor_riego.py
 python servidores/servidor_plantas.py
 ```
 
-## Parar y limpiar
+### 9. Acceder a la base de datos:
 
-- Parar el contenedor MySQL
 ```bash
-docker stop greenhouse-db && docker rm greenhouse-db
+mysql -h 127.0.0.1 -P 3306 -u root -p
 ```
 
-- Eliminar el volumen de datos 
+Con la contraseña "rootpass"
+
 ```bash
-docker volume rm greenhouse_mysql_data
+USE greenhouse;
 ```
+
+Hay tres tablas (clima_data, riego_data, plant_data)
+
+```bash
+SELECT * FROM clima_data LIMIT 10;
+```
+
+CTRL + D para salir

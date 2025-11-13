@@ -19,38 +19,38 @@
       </Value>
     </UAVariable>
 
-    <UAVariable NodeId="ns=1;i=3002" BrowseName="1:Salud" DataType="Float">
-      <DisplayName>Salud</DisplayName>
+    <UAVariable NodeId="ns=1;i=3002" BrowseName="1:CantidadFrutos" DataType="Int32">
+      <DisplayName>CantidadFrutos</DisplayName>
       <Value>
-        <Float>85.0</Float>
+        <Int32>0</Int32>
       </Value>
     </UAVariable>
 
-    <UAVariable NodeId="ns=1;i=3003" BrowseName="1:EtapaDesarrollo" DataType="String">
-      <DisplayName>EtapaDesarrollo</DisplayName>
+    <UAVariable NodeId="ns=1;i=3003" BrowseName="1:CalidadFrutos" DataType="Float">
+      <DisplayName>CalidadFrutos</DisplayName>
       <Value>
-        <String>germinacion</String>
+        <Float>0.0</Float>
       </Value>
     </UAVariable>
 
-    <UAVariable NodeId="ns=1;i=4001" BrowseName="1:EspeciePlanta" DataType="String">
+    <UAVariable NodeId="ns=1;i=3004" BrowseName="1:EspeciePlanta" DataType="String">
       <DisplayName>EspeciePlanta</DisplayName>
       <Value>
         <String>Tomate</String>
       </Value>
     </UAVariable>
 
-    <UAVariable NodeId="ns=1;i=4002" BrowseName="1:DiasDesdeSiembra" DataType="Int32">
-      <DisplayName>DiasDesdeSiembra</DisplayName>
+    <UAVariable NodeId="ns=1;i=4001" BrowseName="1:HumedadObjetivo" DataType="Float">
+      <DisplayName>HumedadObjetivo</DisplayName>
       <Value>
-        <Int32>0</Int32>
+        <Float>70.0</Float>
       </Value>
     </UAVariable>
 
-    <UAVariable NodeId="ns=1;i=4003" BrowseName="1:ParametrosOptimos" DataType="String">
-      <DisplayName>ParametrosOptimos</DisplayName>
+    <UAVariable NodeId="ns=1;i=4002" BrowseName="1:PHObjetivo" DataType="Float">
+      <DisplayName>PHObjetivo</DisplayName>
       <Value>
-        <String>{"temperatura":25,"humedad":70,"ph":6.5}</String>
+        <Float>6.5</Float>
       </Value>
     </UAVariable>
 

@@ -12,24 +12,46 @@
     <Children>
       <UAVariable NodeId="ns=1;i=1101" BrowseName="1:Temperatura" DataType="Float">
         <DisplayName>Temperatura</DisplayName>
-      </UAVariable>
-      <UAVariable NodeId="ns=1;i=1102" BrowseName="1:Humedad" DataType="Float">
-        <DisplayName>Humedad</DisplayName>
-      </UAVariable>
-      <UAVariable NodeId="ns=1;i=1103" BrowseName="1:CO2" DataType="Float">
-        <DisplayName>CO2</DisplayName>
-      </UAVariable>
-      <UAVariable NodeId="ns=1;i=1104" BrowseName="1:IntensidadLuz" DataType="Float">
-        <DisplayName>IntensidadLuz</DisplayName>
+        <Value>
+          <Float>23.0</Float>
+        </Value>
       </UAVariable>
 
-      <!-- Propiedades -->
+      <UAVariable NodeId="ns=1;i=1102" BrowseName="1:Humedad" DataType="Float">
+        <DisplayName>Humedad</DisplayName>
+        <Value>
+          <Float>65.0</Float>
+        </Value>
+      </UAVariable>
+
+      <UAVariable NodeId="ns=1;i=1103" BrowseName="1:CO2" DataType="Float">
+        <DisplayName>CO2</DisplayName>
+        <Value>
+          <Float>450.0</Float>
+        </Value>
+      </UAVariable>
+
+      <UAVariable NodeId="ns=1;i=1104" BrowseName="1:IntensidadLuz" DataType="Float">
+        <DisplayName>IntensidadLuz</DisplayName>
+        <Value>
+          <Float>800.0</Float>
+        </Value>
+      </UAVariable>
+
       <UAVariable NodeId="ns=1;i=1201" BrowseName="1:UbicacionZona" DataType="String">
         <DisplayName>UbicacionZona</DisplayName>
+        <Value>
+          <String>Zona A - Cultivo Principal</String>
+        </Value>
       </UAVariable>
+
       <UAVariable NodeId="ns=1;i=1202" BrowseName="1:TimestampUltimaActualizacion" DataType="DateTime">
         <DisplayName>TimestampUltimaActualizacion</DisplayName>
+        <Value>
+          <DateTime>2025-11-13T10:43:55Z</DateTime>
+        </Value>
       </UAVariable>
+
     </Children>
   </UAObjectType>
 </UANodeSet>

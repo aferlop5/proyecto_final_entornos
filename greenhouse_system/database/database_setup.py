@@ -1,6 +1,4 @@
-# database/database_setup.py
 import mysql.connector
-from mysql.connector import errorcode
 
 CONFIG = {
     "host": "127.0.0.1",
@@ -12,52 +10,50 @@ CONFIG = {
 
 TABLES = {}
 
-TABLES['sensor_data'] = (
-    "CREATE TABLE IF NOT EXISTS sensor_data ("
+# Tabla para Clima
+TABLES['clima_data'] = (
+    "CREATE TABLE IF NOT EXISTS clima_data ("
     "  id INT AUTO_INCREMENT PRIMARY KEY,"
-    "  origen VARCHAR(64),"
-    "  nombre_variable VARCHAR(64),"
-    "  valor FLOAT,"
-    "  unidad VARCHAR(32),"
+    "  temperatura FLOAT,"
+    "  humedad FLOAT,"
+    "  co2 FLOAT,"
+    "  intensidad_luz FLOAT,"
+    "  zona VARCHAR(32),"
     "  timestamp DATETIME DEFAULT CURRENT_TIMESTAMP"
     ") ENGINE=InnoDB"
 )
 
-TABLES['plant_states'] = (
-    "CREATE TABLE IF NOT EXISTS plant_states ("
+# Tabla para Plantas
+TABLES['plant_data'] = (
+    "CREATE TABLE IF NOT EXISTS plant_data ("
     "  id INT AUTO_INCREMENT PRIMARY KEY,"
     "  especie VARCHAR(64),"
-    "  dias_desde_siembra INT,"
     "  crecimiento FLOAT,"
-    "  salud FLOAT,"
-    "  etapa VARCHAR(32),"
-    "  parametros_optimos JSON,"
+    "  cantidad_frutos INT,"
+    "  calidad_frutos FLOAT,"
+    "  humedad_objetivo FLOAT,"
+    "  ph_objetivo FLOAT,"
     "  timestamp DATETIME DEFAULT CURRENT_TIMESTAMP"
     ") ENGINE=InnoDB"
 )
 
-TABLES['optimizations'] = (
-    "CREATE TABLE IF NOT EXISTS optimizations ("
+# Tabla para Riego
+TABLES['riego_data'] = (
+    "CREATE TABLE IF NOT EXISTS riego_data ("
     "  id INT AUTO_INCREMENT PRIMARY KEY,"
-    "  algoritmo VARCHAR(64),"
-    "  parametros TEXT,"
-    "  fitness FLOAT,"
-    "  timestamp DATETIME DEFAULT CURRENT_TIMESTAMP"
-    ") ENGINE=InnoDB"
-)
-
-TABLES['system_alerts'] = (
-    "CREATE TABLE IF NOT EXISTS system_alerts ("
-    "  id INT AUTO_INCREMENT PRIMARY KEY,"
-    "  tipo VARCHAR(32),"
-    "  severidad VARCHAR(16),"
-    "  mensaje TEXT,"
+    "  ph FLOAT,"
+    "  conductividad FLOAT,"
+    "  flujo FLOAT,"
+    "  nivel_deposito FLOAT,"
+    "  tipo_nutriente VARCHAR(64),"
+    "  estado_sistema VARCHAR(32),"
     "  timestamp DATETIME DEFAULT CURRENT_TIMESTAMP"
     ") ENGINE=InnoDB"
 )
 
 def crear_base_datos():
     try:
+        # Conectar al servidor sin base de datos
         cnx = mysql.connector.connect(
             host=CONFIG["host"],
             user=CONFIG["user"],
@@ -69,6 +65,7 @@ def crear_base_datos():
         cursor.close()
         cnx.close()
 
+        # Conectar ya a la base de datos creada
         cnx = mysql.connector.connect(**CONFIG)
         cursor = cnx.cursor()
         for name, ddl in TABLES.items():
