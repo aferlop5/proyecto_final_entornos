@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UANodeSet xmlns="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd">
+  <NamespaceUris>
+    <Uri>http://invernadero.org/clima</Uri>
+  </NamespaceUris>
+
+  <UAObjectType NodeId="ns=1;i=1001" BrowseName="1:ClimaType">
+    <DisplayName>ClimaType</DisplayName>
+    <References>
+      <Reference ReferenceType="HasSubtype" IsForward="false">i=58</Reference>
+    </References>
+    <Children>
+      <UAVariable NodeId="ns=1;i=1101" BrowseName="1:Temperatura" DataType="Float">
+        <DisplayName>Temperatura</DisplayName>
+      </UAVariable>
+      <UAVariable NodeId="ns=1;i=1102" BrowseName="1:Humedad" DataType="Float">
+        <DisplayName>Humedad</DisplayName>
+      </UAVariable>
+      <UAVariable NodeId="ns=1;i=1103" BrowseName="1:CO2" DataType="Float">
+        <DisplayName>CO2</DisplayName>
+      </UAVariable>
+      <UAVariable NodeId="ns=1;i=1104" BrowseName="1:IntensidadLuz" DataType="Float">
+        <DisplayName>IntensidadLuz</DisplayName>
+      </UAVariable>
+
+      <!-- Propiedades -->
+      <UAVariable NodeId="ns=1;i=1201" BrowseName="1:UbicacionZona" DataType="String">
+        <DisplayName>UbicacionZona</DisplayName>
+      </UAVariable>
+      <UAVariable NodeId="ns=1;i=1202" BrowseName="1:TimestampUltimaActualizacion" DataType="DateTime">
+        <DisplayName>TimestampUltimaActualizacion</DisplayName>
+      </UAVariable>
+    </Children>
+  </UAObjectType>
+</UANodeSet>

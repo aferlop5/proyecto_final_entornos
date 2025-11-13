@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UANodeSet xmlns="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd">
+  <NamespaceUris>
+    <Uri>http://invernadero.org/riego</Uri>
+  </NamespaceUris>
+
+  <UAObjectType NodeId="ns=1;i=1002" BrowseName="1:RiegoType">
+    <DisplayName>RiegoType</DisplayName>
+    <Description>Tipo que representa el sistema de riego</Description>
+  </UAObjectType>
+
+  <UAObject NodeId="ns=1;i=2002" BrowseName="1:Riego" TypeDefinition="1:RiegoType">
+    <DisplayName>Riego</DisplayName>
+
+    <UAVariable NodeId="ns=1;i=3001" BrowseName="1:pH" DataType="Float">
+      <DisplayName>pH</DisplayName>
+      <Value>
+        <Float>6.5</Float>
+      </Value>
+    </UAVariable>
+
+    <UAVariable NodeId="ns=1;i=3002" BrowseName="1:Conductividad" DataType="Float">
+      <DisplayName>Conductividad</DisplayName>
+      <Value>
+        <Float>1.8</Float>
+      </Value>
+    </UAVariable>
+
+    <UAVariable NodeId="ns=1;i=3003" BrowseName="1:Flujo" DataType="Float">
+      <DisplayName>Flujo</DisplayName>
+      <Value>
+        <Float>2.0</Float>
+      </Value>
+    </UAVariable>
+
+    <UAVariable NodeId="ns=1;i=3004" BrowseName="1:NivelDeposito" DataType="Float">
+      <DisplayName>NivelDeposito</DisplayName>
+      <Value>
+        <Float>80.0</Float>
+      </Value>
+    </UAVariable>
+
+    <UAVariable NodeId="ns=1;i=4001" BrowseName="1:TipoNutriente" DataType="String">
+      <DisplayName>TipoNutriente</DisplayName>
+      <Value>
+        <String>Solución Hidropónica Base</String>
+      </Value>
+    </UAVariable>
+
+    <UAVariable NodeId="ns=1;i=4002" BrowseName="1:EstadoSistema" DataType="String">
+      <DisplayName>EstadoSistema</DisplayName>
+      <Value>
+        <String>OPERATIVO</String>
+      </Value>
+    </UAVariable>
+
+  </UAObject>
+</UANodeSet>

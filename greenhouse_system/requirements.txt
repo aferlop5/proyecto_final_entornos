@@ -1,0 +1,2 @@
+asyncua==1.1.8
+mysql-connector-python

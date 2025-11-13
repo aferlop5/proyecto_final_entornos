@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<UANodeSet xmlns="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd">
+  <NamespaceUris>
+    <Uri>http://invernadero.org/plantas</Uri>
+  </NamespaceUris>
+
+  <UAObjectType NodeId="ns=1;i=1003" BrowseName="1:PlantasType">
+    <DisplayName>PlantasType</DisplayName>
+    <Description>Tipo que representa el estado de las plantas</Description>
+  </UAObjectType>
+
+  <UAObject NodeId="ns=1;i=2003" BrowseName="1:Plantas" TypeDefinition="1:PlantasType">
+    <DisplayName>Plantas</DisplayName>
+
+    <UAVariable NodeId="ns=1;i=3001" BrowseName="1:Crecimiento" DataType="Float">
+      <DisplayName>Crecimiento</DisplayName>
+      <Value>
+        <Float>15.0</Float>
+      </Value>
+    </UAVariable>
+
+    <UAVariable NodeId="ns=1;i=3002" BrowseName="1:Salud" DataType="Float">
+      <DisplayName>Salud</DisplayName>
+      <Value>
+        <Float>85.0</Float>
+      </Value>
+    </UAVariable>
+
+    <UAVariable NodeId="ns=1;i=3003" BrowseName="1:EtapaDesarrollo" DataType="String">
+      <DisplayName>EtapaDesarrollo</DisplayName>
+      <Value>
+        <String>germinacion</String>
+      </Value>
+    </UAVariable>
+
+    <UAVariable NodeId="ns=1;i=4001" BrowseName="1:EspeciePlanta" DataType="String">
+      <DisplayName>EspeciePlanta</DisplayName>
+      <Value>
+        <String>Tomate</String>
+      </Value>
+    </UAVariable>
+
+    <UAVariable NodeId="ns=1;i=4002" BrowseName="1:DiasDesdeSiembra" DataType="Int32">
+      <DisplayName>DiasDesdeSiembra</DisplayName>
+      <Value>
+        <Int32>0</Int32>
+      </Value>
+    </UAVariable>
+
+    <UAVariable NodeId="ns=1;i=4003" BrowseName="1:ParametrosOptimos" DataType="String">
+      <DisplayName>ParametrosOptimos</DisplayName>
+      <Value>
+        <String>{"temperatura":25,"humedad":70,"ph":6.5}</String>
+      </Value>
+    </UAVariable>
+
+  </UAObject>
+</UANodeSet>
