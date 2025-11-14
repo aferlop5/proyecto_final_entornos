@@ -4,55 +4,46 @@
     <Uri>http://invernadero.org/plantas</Uri>
   </NamespaceUris>
 
-  <UAObjectType NodeId="ns=1;i=1003" BrowseName="1:PlantasType">
+  <UAObjectType NodeId="ns=1;i=1002" BrowseName="1:PlantasType">
     <DisplayName>PlantasType</DisplayName>
-    <Description>Tipo que representa el estado de las plantas</Description>
   </UAObjectType>
 
-  <UAObject NodeId="ns=1;i=2003" BrowseName="1:Plantas" TypeDefinition="1:PlantasType">
+  <UAObject NodeId="ns=1;i=2001" BrowseName="1:Plantas" TypeDefinition="1:PlantasType">
     <DisplayName>Plantas</DisplayName>
 
-    <UAVariable NodeId="ns=1;i=3001" BrowseName="1:Crecimiento" DataType="Float">
+    <UAVariable NodeId="ns=1;i=2101" BrowseName="1:Crecimiento" DataType="Float">
       <DisplayName>Crecimiento</DisplayName>
       <Value>
         <Float>15.0</Float>
       </Value>
     </UAVariable>
 
-    <UAVariable NodeId="ns=1;i=3002" BrowseName="1:CantidadFrutos" DataType="Int32">
+    <UAVariable NodeId="ns=1;i=2102" BrowseName="1:CantidadFrutos" DataType="Int32">
       <DisplayName>CantidadFrutos</DisplayName>
       <Value>
         <Int32>0</Int32>
       </Value>
     </UAVariable>
 
-    <UAVariable NodeId="ns=1;i=3003" BrowseName="1:CalidadFrutos" DataType="Float">
+    <UAVariable NodeId="ns=1;i=2103" BrowseName="1:CalidadFrutos" DataType="Float">
       <DisplayName>CalidadFrutos</DisplayName>
       <Value>
         <Float>0.0</Float>
       </Value>
     </UAVariable>
 
-    <UAVariable NodeId="ns=1;i=3004" BrowseName="1:EspeciePlanta" DataType="String">
+    <UAVariable NodeId="ns=1;i=2104" BrowseName="1:EspeciePlanta" DataType="String">
       <DisplayName>EspeciePlanta</DisplayName>
       <Value>
         <String>Tomate</String>
       </Value>
     </UAVariable>
 
-    <UAVariable NodeId="ns=1;i=4001" BrowseName="1:HumedadObjetivo" DataType="Float">
-      <DisplayName>HumedadObjetivo</DisplayName>
+    <UAVariable NodeId="ns=1;i=2105" BrowseName="1:NivelSalud" DataType="Float">
+      <DisplayName>NivelSalud</DisplayName>
       <Value>
-        <Float>70.0</Float>
+        <Float>85.0</Float>
       </Value>
     </UAVariable>
-
-    <UAVariable NodeId="ns=1;i=4002" BrowseName="1:PHObjetivo" DataType="Float">
-      <DisplayName>PHObjetivo</DisplayName>
-      <Value>
-        <Float>6.5</Float>
-      </Value>
-    </UAVariable>
-
   </UAObject>
 </UANodeSet>

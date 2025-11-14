@@ -1,5 +1,4 @@
 import mysql.connector
-from datetime import datetime
 
 CONFIG = {
     "host": "127.0.0.1",
@@ -9,40 +8,57 @@ CONFIG = {
     "port": 3306
 }
 
-class DatabaseManager:
-    def __init__(self):
-        self.cnx = mysql.connector.connect(**CONFIG)
-        self.cursor = self.cnx.cursor(dictionary=True)
+def conectar():
+    return mysql.connector.connect(**CONFIG)
 
-    def insertar_datos_sensores(self, origen, datos):
-        for nombre, valor in datos.items():
-            # Convertir cualquier tipo complejo a string
-            if not isinstance(valor, str):
-                valor = str(valor)
-            sql = ("INSERT INTO sensor_data (origen, nombre_variable, valor, unidad) "
-                "VALUES (%s, %s, %s, %s)")
-            unidad = "N/A"
-            self.cursor.execute(sql, (origen, nombre, valor, unidad))
-        self.cnx.commit()
+def ejecutar_insert(query, valores):
+    try:
+        cnx = conectar()
+        cursor = cnx.cursor()
+        cursor.execute(query, valores)
+        cnx.commit()
+        cursor.close()
+        cnx.close()
+        print("Inserción realizada correctamente.")
+    except mysql.connector.Error as err:
+        print("Error al insertar:", err)
 
-    def obtener_historico(self, horas=24):
-        sql = "SELECT * FROM sensor_data WHERE timestamp >= NOW() - INTERVAL %s HOUR"
-        self.cursor.execute(sql, (horas,))
-        return self.cursor.fetchall()
+# 1. Inserción en clima_data
+def insertar_clima(zona, temperatura, humedad, co2, intensidad_luz, presion):
+    query = ("INSERT INTO clima_data "
+             "(zona, temperatura, humedad, co2, intensidad_luz, presion) "
+             "VALUES (%s, %s, %s, %s, %s, %s)")
+    valores = (zona, temperatura, humedad, co2, intensidad_luz, presion)
+    ejecutar_insert(query, valores)
 
-    def registrar_alerta(self, tipo, severidad, mensaje):
-        sql = "INSERT INTO system_alerts (tipo, severidad, mensaje) VALUES (%s, %s, %s)"
-        self.cursor.execute(sql, (tipo, severidad, mensaje))
-        self.cnx.commit()
+# 2. Inserción en plantas_data
+def insertar_planta(especie, crecimiento, cantidad_frutos, calidad_frutos, nivel_salud):
+    query = ("INSERT INTO plantas_data "
+             "(especie, crecimiento, cantidad_frutos, calidad_frutos, nivel_salud) "
+             "VALUES (%s, %s, %s, %s, %s)")
+    valores = (especie, crecimiento, cantidad_frutos, calidad_frutos, nivel_salud)
+    ejecutar_insert(query, valores)
 
-    def cerrar(self):
-        self.cursor.close()
-        self.cnx.close()
+# 3. Inserción en riego_data
+def insertar_riego(ph, conductividad, flujo, nivel_deposito, caudal_historico):
+    query = ("INSERT INTO riego_data "
+             "(ph, conductividad, flujo, nivel_deposito, caudal_historico) "
+             "VALUES (%s, %s, %s, %s, %s)")
+    valores = (ph, conductividad, flujo, nivel_deposito, caudal_historico)
+    ejecutar_insert(query, valores)
 
-# Comprobación rápida
-if __name__ == "__main__":
-    db = DatabaseManager()
-    db.insertar_datos_sensores("clima", {"Temperatura": 23, "Humedad": 65})
-    print(db.obtener_historico(1))
-    db.registrar_alerta("CLIMA", "ADVERTENCIA", "Temperatura alta")
-    db.cerrar()
+# 4. Inserción en resultados_funciones
+def insertar_resultado_funcion(zona, especie, indice_estres, rendimiento_frutos, eficiencia_luz, necesidad_riego, ajuste_nutricion):
+    query = ("INSERT INTO resultados_funciones "
+             "(zona, especie, indice_estres, rendimiento_frutos, eficiencia_luz, necesidad_riego, ajuste_nutricion) "
+             "VALUES (%s, %s, %s, %s, %s, %s, %s)")
+    valores = (zona, especie, indice_estres, rendimiento_frutos, eficiencia_luz, necesidad_riego, ajuste_nutricion)
+    ejecutar_insert(query, valores)
+
+# 5. Inserción en alertas_criticas
+def insertar_alerta(zona, especie, tipo_alerta, valor_alerta):
+    query = ("INSERT INTO alertas_criticas "
+            "(zona, especie, tipo_alerta, valor_alerta) "
+            "VALUES (%s, %s, %s, %s)")
+    valores = (zona, especie, tipo_alerta, valor_alerta)
+    ejecutar_insert(query, valores)

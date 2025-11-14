@@ -41,12 +41,12 @@ cd proyecto_final_entornos
 
 ### 3. Levantar base de datos MySQL con Docker
 ```bash
-docker run -d --name greenhouse-db \
+docker run -d \
+  --name greenhouse-db \
   -e MYSQL_ROOT_PASSWORD=rootpass \
-  -e MYSQL_DATABASE=greenhouse \
   -p 3306:3306 \
-  -v greenhouse_mysql_data:/var/lib/mysql \
-  mysql:8.0
+  -v greenhouse_data:/var/lib/mysql \
+  mysql:8
 ```
 
 ### 4. Crear entorno virtual

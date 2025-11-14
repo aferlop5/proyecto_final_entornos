@@ -10,34 +10,31 @@ CONFIG = {
 
 TABLES = {}
 
-# Tabla para Clima
 TABLES['clima_data'] = (
     "CREATE TABLE IF NOT EXISTS clima_data ("
     "  id INT AUTO_INCREMENT PRIMARY KEY,"
+    "  zona VARCHAR(32),"
     "  temperatura FLOAT,"
     "  humedad FLOAT,"
     "  co2 FLOAT,"
     "  intensidad_luz FLOAT,"
-    "  zona VARCHAR(32),"
+    "  presion FLOAT,"
     "  timestamp DATETIME DEFAULT CURRENT_TIMESTAMP"
     ") ENGINE=InnoDB"
 )
 
-# Tabla para Plantas
-TABLES['plant_data'] = (
-    "CREATE TABLE IF NOT EXISTS plant_data ("
+TABLES['plantas_data'] = (
+    "CREATE TABLE IF NOT EXISTS plantas_data ("
     "  id INT AUTO_INCREMENT PRIMARY KEY,"
     "  especie VARCHAR(64),"
     "  crecimiento FLOAT,"
     "  cantidad_frutos INT,"
     "  calidad_frutos FLOAT,"
-    "  humedad_objetivo FLOAT,"
-    "  ph_objetivo FLOAT,"
+    "  nivel_salud FLOAT,"
     "  timestamp DATETIME DEFAULT CURRENT_TIMESTAMP"
     ") ENGINE=InnoDB"
 )
 
-# Tabla para Riego
 TABLES['riego_data'] = (
     "CREATE TABLE IF NOT EXISTS riego_data ("
     "  id INT AUTO_INCREMENT PRIMARY KEY,"
@@ -45,15 +42,40 @@ TABLES['riego_data'] = (
     "  conductividad FLOAT,"
     "  flujo FLOAT,"
     "  nivel_deposito FLOAT,"
-    "  tipo_nutriente VARCHAR(64),"
-    "  estado_sistema VARCHAR(32),"
+    "  caudal_historico FLOAT,"
     "  timestamp DATETIME DEFAULT CURRENT_TIMESTAMP"
     ") ENGINE=InnoDB"
 )
 
+TABLES['resultados_funciones'] = (
+    "CREATE TABLE IF NOT EXISTS resultados_funciones ("
+    "  id INT AUTO_INCREMENT PRIMARY KEY,"
+    "  zona VARCHAR(32),"
+    "  especie VARCHAR(64),"
+    "  indice_estres FLOAT,"
+    "  rendimiento_frutos FLOAT,"
+    "  eficiencia_luz FLOAT,"
+    "  necesidad_riego BOOLEAN,"
+    "  ajuste_nutricion VARCHAR(32),"
+    "  timestamp DATETIME DEFAULT CURRENT_TIMESTAMP"
+    ") ENGINE=InnoDB"
+)
+
+TABLES['alertas_criticas'] = (
+    "CREATE TABLE IF NOT EXISTS alertas_criticas ("
+    "  id INT AUTO_INCREMENT PRIMARY KEY,"
+    "  zona VARCHAR(32),"
+    "  especie VARCHAR(64),"
+    "  tipo_alerta VARCHAR(64),"
+    "  valor_alerta BOOLEAN,"
+    "  timestamp DATETIME DEFAULT CURRENT_TIMESTAMP"
+    ") ENGINE=InnoDB"
+)
+
+
 def crear_base_datos():
     try:
-        # Conectar al servidor sin base de datos
+        # Crear la BD si no existe
         cnx = mysql.connector.connect(
             host=CONFIG["host"],
             user=CONFIG["user"],
@@ -65,10 +87,11 @@ def crear_base_datos():
         cursor.close()
         cnx.close()
 
-        # Conectar ya a la base de datos creada
+        # Crear las tablas
         cnx = mysql.connector.connect(**CONFIG)
         cursor = cnx.cursor()
         for name, ddl in TABLES.items():
+            print(f"Creando tabla {name}...")
             cursor.execute(ddl)
         cnx.commit()
         cursor.close()

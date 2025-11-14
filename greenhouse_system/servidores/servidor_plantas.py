@@ -1,72 +1,39 @@
-import asyncio, random, datetime
+import asyncio, random
 from asyncua import Server
 
 async def main():
     server = Server()
     await server.init()
-    endpoint = "opc.tcp://0.0.0.0:4843/plantas/"
+    endpoint = "opc.tcp://0.0.0.0:4842/plantas/"
     server.set_endpoint(endpoint)
-    server.set_server_name("Servidor Estado Plantas")
-
+    server.set_server_name("Servidor Plantas")
     idx = await server.register_namespace("http://invernadero.org/plantas")
 
     async with server:
-        print(f"Servidor plantas escuchando en {endpoint}")
+        print(f"Servidor Plantas escuchando en {endpoint}")
+        plantas = ["Tomates", "Pimientos"]
+        plantas_objs = {}
+        for planta in plantas:
+            obj = await server.nodes.objects.add_object(idx, planta)
+            plantas_objs[planta] = {
+                "obj": obj,
+                "Crecimiento": await obj.add_variable(idx, "Crecimiento", 15.0),
+                "CantidadFrutos": await obj.add_variable(idx, "CantidadFrutos", 0),
+                "CalidadFrutos": await obj.add_variable(idx, "CalidadFrutos", 0.0),
+                "EspeciePlanta": await obj.add_variable(idx, "EspeciePlanta", planta),
+                "NivelSalud": await obj.add_variable(idx, "NivelSalud", 85.0)
+            }
+            for var_name in plantas_objs[planta]:
+                if var_name != "obj":
+                    await plantas_objs[planta][var_name].set_writable()
 
-        # Lista de especies a simular
-        especies = [
-            {"nombre": "Tomate", "humedad_obj": 70.0, "ph_obj": 6.5},
-            {"nombre": "Lechuga", "humedad_obj": 65.0, "ph_obj": 6.0},
-            {"nombre": "Pimiento", "humedad_obj": 68.0, "ph_obj": 6.2}
-        ]
-
-        objetos_plantas = []
-
-        for especie_info in especies:
-            obj = await server.nodes.objects.add_object(idx, f"Planta_{especie_info['nombre']}")
-            
-            # Variables dinámicas
-            crecimiento = await obj.add_variable(idx, "Crecimiento", random.uniform(10, 20))
-            cantidad_frutos = await obj.add_variable(idx, "CantidadFrutos", 0)
-            calidad_frutos = await obj.add_variable(idx, "CalidadFrutos", 0.0)
-
-            # Variable estática
-            especie_var = await obj.add_variable(idx, "EspeciePlanta", especie_info["nombre"])
-
-            # Propiedades constantes
-            humedad_obj = await obj.add_property(idx, "HumedadObjetivo", especie_info["humedad_obj"])
-            ph_obj = await obj.add_property(idx, "PHObjetivo", especie_info["ph_obj"])
-
-            # Hacer variables dinámicas escribibles
-            await crecimiento.set_writable()
-            await cantidad_frutos.set_writable()
-            await calidad_frutos.set_writable()
-
-            objetos_plantas.append({
-                "crecimiento": crecimiento,
-                "cantidad_frutos": cantidad_frutos,
-                "calidad_frutos": calidad_frutos
-            })
-
-        # Loop de actualización de valores
         while True:
-            for planta in objetos_plantas:
-                # Crecimiento: +0.1 a +0.5 cm por ciclo, hasta 100 cm
-                current_crec = await planta["crecimiento"].get_value()
-                new_crec = min(100, current_crec + random.uniform(0.1, 0.5))
-                await planta["crecimiento"].write_value(float(round(new_crec, 2)))
-
-                # Cantidad de frutos: aleatorio entre 0 y 20, aumenta gradualmente
-                current_frutos = await planta["cantidad_frutos"].get_value()
-                new_frutos = min(20, current_frutos + random.randint(0, 2))
-                await planta["cantidad_frutos"].write_value(int(new_frutos))
-
-                # Calidad frutos: entre 50 y 100, variación aleatoria
-                current_calidad = await planta["calidad_frutos"].get_value()
-                new_calidad = max(50, min(100, current_calidad + random.uniform(-2, 2)))
-                await planta["calidad_frutos"].write_value(float(round(new_calidad, 2)))
-
-            await asyncio.sleep(3)
+            for planta, datos in plantas_objs.items():
+                await datos["Crecimiento"].write_value(round(10 + random.uniform(0, 5),2))
+                await datos["CantidadFrutos"].write_value(random.randint(0, 10))
+                await datos["CalidadFrutos"].write_value(round(random.uniform(0, 100),2))
+                await datos["NivelSalud"].write_value(round(random.uniform(70,100),2))
+            await asyncio.sleep(5)
 
 if __name__ == "__main__":
     asyncio.run(main())
