@@ -1,2 +1,5 @@
 .venv/
 greenhouse_system/.venv/
+__pycache__/
+greenhouse_system/middleware/__pycache__/
+*.pyc
