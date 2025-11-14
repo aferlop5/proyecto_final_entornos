@@ -56,9 +56,9 @@ def insertar_resultado_funcion(zona, especie, indice_estres, rendimiento_frutos,
     ejecutar_insert(query, valores)
 
 # 5. Inserción en alertas_criticas
-def insertar_alerta(zona, especie, tipo_alerta, valor_alerta):
+def insertar_alerta(zona, especie, tipo_alerta):
     query = ("INSERT INTO alertas_criticas "
-            "(zona, especie, tipo_alerta, valor_alerta) "
-            "VALUES (%s, %s, %s, %s)")
-    valores = (zona, especie, tipo_alerta, valor_alerta)
+            "(zona, especie, tipo_alerta) "
+            "VALUES (%s, %s, %s)")
+    valores = (zona, especie, tipo_alerta)
     ejecutar_insert(query, valores)

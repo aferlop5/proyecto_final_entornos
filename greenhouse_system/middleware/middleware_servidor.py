@@ -100,17 +100,19 @@ async def handle_client(reader, writer):
                     )
 
                     # ---- Alertas críticas ----
-                    if algoritmos.alerta_critica(
+                    problema = algoritmos.alerta_critica(
                         clima.get("Temperatura"),
                         clima.get("CO2"),
                         planta.get("NivelSalud"),
                         clima.get("IntensidadLuz")
-                    ):
+                    )
+
+                    # Si hay un problema (string), insertar; si es None, no hacer nada
+                    if problema is not None:
                         db.insertar_alerta(
                             zona,
                             especie,
-                            "CONDICION_CRITICA",
-                            True,
+                            problema
                         )
 
         except json.JSONDecodeError:

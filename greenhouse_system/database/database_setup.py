@@ -67,7 +67,6 @@ TABLES['alertas_criticas'] = (
     "  zona VARCHAR(32),"
     "  especie VARCHAR(64),"
     "  tipo_alerta VARCHAR(64),"
-    "  valor_alerta BOOLEAN,"
     "  timestamp DATETIME DEFAULT CURRENT_TIMESTAMP"
     ") ENGINE=InnoDB"
 )

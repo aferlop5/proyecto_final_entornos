@@ -66,29 +66,24 @@ import random
 
 def alerta_critica(temperatura, co2, nivel_salud, luz):
     """
-    Devuelve True si se detecta una situación de riesgo para el cultivo.
-    Se combina el valor de los sensores con una pequeña probabilidad para situaciones inesperadas.
+    Devuelve un string indicando el problema detectado.
+    Si no hay problemas, devuelve None.
     """
-    # Temperatura ligeramente fuera de rango óptimo
+
     if temperatura < 20 or temperatura > 24:
-        return True
+        return "Temperatura fuera de rango"
 
-    # CO2 fuera de rango medio
     if co2 < 400 or co2 > 500:
-        return True
+        return "CO2 fuera de rango"
 
-    # Nivel de salud bajo
     if nivel_salud < 75:
-        return True
+        return "Nivel de salud bajo"
 
-    # Luz baja (solo de noche o situaciones anómalas)
     if luz < 50:
-        return True
+        return "Luz insuficiente"
 
-    # Pequeña probabilidad de alerta inesperada (5%)
+    # Probabilidad de alerta inesperada
     if random.random() < 0.05:
-        return True
+        return "Alerta inesperada"
 
-    return False
-
-
+    return None
