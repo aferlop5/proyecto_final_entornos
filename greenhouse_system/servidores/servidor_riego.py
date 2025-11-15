@@ -30,7 +30,7 @@ async def main():
             await riego_obj["Flujo"].write_value(round(1.8 + random.uniform(-0.5,0.5),2))
             await riego_obj["NivelDeposito"].write_value(round(50 + random.uniform(0,50),2))
             await riego_obj["CaudalHistorico"].write_value(round(random.uniform(1,3),2))
-            await asyncio.sleep(5)
+            await asyncio.sleep(2)
 
 if __name__ == "__main__":
     asyncio.run(main())

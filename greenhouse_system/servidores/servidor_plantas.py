@@ -33,7 +33,7 @@ async def main():
                 await datos["CantidadFrutos"].write_value(random.randint(0, 10))
                 await datos["CalidadFrutos"].write_value(round(random.uniform(0, 100),2))
                 await datos["NivelSalud"].write_value(round(random.uniform(70,100),2))
-            await asyncio.sleep(5)
+            await asyncio.sleep(2)
 
 if __name__ == "__main__":
     asyncio.run(main())

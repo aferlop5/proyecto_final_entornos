@@ -1,0 +1,253 @@
+body {
+    font-family: "Inter", "Segoe UI", sans-serif;
+    background-color: #f5f7fa;
+    margin: 0;
+    color: #1f2933;
+}
+
+.app-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px 32px 48px;
+}
+
+.page-header {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-bottom: 24px;
+}
+
+.page-header h1 {
+    margin: 0;
+    font-size: 2.2rem;
+    color: #1d3557;
+}
+
+.subtitle {
+    margin: 0;
+    color: #5c6c7a;
+}
+
+.kpi-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 16px;
+    margin-bottom: 24px;
+}
+
+.kpi-card {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 8px 20px rgba(29, 53, 87, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.kpi-card h3 {
+    margin: 0;
+    font-size: 1rem;
+    color: #5c6c7a;
+}
+
+.kpi-card p {
+    margin: 0;
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: #1d3557;
+}
+
+.sensor-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 24px;
+    margin-bottom: 24px;
+}
+
+.sensor-column {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 10px 24px rgba(38, 70, 83, 0.08);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.sensor-column h2 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: #1d3557;
+}
+
+.section-label {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #5c6c7a;
+}
+
+.zone-badge {
+    display: inline-flex;
+    align-self: flex-start;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background-color: #e9f5f2;
+    color: #0b6b50;
+    font-weight: 600;
+}
+
+.sensor-content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.indicator-card {
+    background: #f9fafb;
+    border-radius: 12px;
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.indicator-card h4 {
+    margin: 0;
+    font-size: 1rem;
+    color: #334e68;
+}
+
+.no-data {
+    color: #9aa5b1;
+}
+
+.line-chart, .indicator-graph {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.05);
+}
+
+.progress-card {
+    background: #f9fafb;
+    border-radius: 12px;
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.progress-label {
+    margin: 0;
+    font-size: 0.95rem;
+    color: #334e68;
+}
+
+.progress-bar {
+    width: 100%;
+    background: #e5e9f0;
+    border-radius: 999px;
+    height: 10px;
+    overflow: hidden;
+}
+
+.progress-bar-fill {
+    background: linear-gradient(90deg, #2a9d8f, #3fb891);
+    height: 100%;
+    border-radius: 999px;
+}
+
+.riego-stats {
+    background: #f9fafb;
+    border-radius: 12px;
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    color: #1f2933;
+}
+
+.plantas-summary {
+    background: #f9fafb;
+    border-radius: 12px;
+    padding: 12px 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.especie-label {
+    font-weight: 600;
+    color: #2a9d8f;
+}
+
+.alert-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.alert-card {
+    border-radius: 12px;
+    padding: 16px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.alert-card h4 {
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+.alert-meta {
+    margin: 0;
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.alert-ok {
+    background: #e0f7f1;
+    color: #076653;
+    box-shadow: none;
+}
+
+.alert-critical {
+    background: linear-gradient(135deg, #d62828, #f94144);
+}
+
+.alert-warning {
+    background: linear-gradient(135deg, #f4a261, #f77f00);
+}
+
+.alert-info {
+    background: linear-gradient(135deg, #457b9d, #1d3557);
+}
+
+.history-section {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 10px 24px rgba(38, 70, 83, 0.08);
+}
+
+.history-section h2 {
+    margin: 0 0 12px 0;
+    font-size: 1.4rem;
+    color: #1d3557;
+}
+
+@media (max-width: 768px) {
+    .app-container {
+        padding: 16px;
+    }
+
+    .sensor-grid {
+        grid-template-columns: 1fr;
+    }
+}

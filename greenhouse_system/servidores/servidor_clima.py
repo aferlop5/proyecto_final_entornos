@@ -36,7 +36,7 @@ async def main():
                 light = 800 if 8 <= hora <= 18 else random.uniform(10, 200)
                 await datos["IntensidadLuz"].write_value(float(round(light,2)))
                 await datos["Presion"].write_value(round(1013 + random.uniform(-5,5),2))
-            await asyncio.sleep(5)
+            await asyncio.sleep(2)
 
 if __name__ == "__main__":
     asyncio.run(main())

@@ -1,4 +1,4 @@
-# **Greenhouse System – Sprint 2**
+# **Greenhouse System – Sprint 3**
 
 ## Sensores
 
@@ -18,6 +18,8 @@ Variables:
 
 Los servidores publican los datos en endpoints OPC UA con el formato:  
 `opc.tcp://0.0.0.0:4841/<nombre_servidor>/`
+
+Desde el Sprint 3 todos los servidores actualizan sus variables **cada 2 segundos** para una visualización más ágil en el dashboard.
 
 ---
 
@@ -50,141 +52,78 @@ El módulo **middleware_servidor**:
 
 ---
 
-## Futuras Ampliaciones
+## Sprint 3 – Panel de Control Web
 
-Actualmente **no existen funciones GET** para recuperar datos.  
-Si se necesitasen, se podrían implementar en `database_handler.py` e importarlas donde fuesen necesarias.
+Se añade un dashboard web basado en **Dash + Plotly** que muestra en tiempo real los KPIs principales, gráficas históricas y alertas activas:
+
+- Carpeta `dashboard/` con los módulos `app.py`, `layout.py`, `callbacks.py`, `data_fetcher.py` y estilos en `assets/style.css`.
+- El dashboard refresca la información cada 2 segundos empleando consultas a MySQL mediante `DataFetcher`.
+- Visualizaciones específicas:
+  - Clima: gauge de temperatura, líneas para humedad/CO₂/presión y zona activa.
+  - Riego: indicadores de pH y conductividad, barra de nivel del depósito y líneas de flujo/caudal.
+  - Plantas: barras de progreso de crecimiento/salud e indicadores de cantidad y calidad de frutos.
+  - Alertas: panel coloreado según severidad.
+
+> Nota: `requirements.txt` incluye ahora `dash` y `plotly`. Instálalas dentro del entorno virtual antes de levantar el dashboard.
 
 
-## Pasos para la ejecución (Sensores, 3 terminales)
+## Guía de ejecución actualizada (Sprint 3)
 
-### 1. Clonar el repositorio
+### Preparar entorno (una sola vez por sesión)
+
 ```bash
-git clone https://github.com/aferlop5/proyecto_final_entornos
-```
-
-### 2. Entrar en la carpeta del proyecto y de greenhouse
-```bash
-cd proyecto_final_entornos/greenhouse_system
-```
-
-### 3. Crear entorno virtual
-```bash
+cd /home/Agusti/tercero/primer_quatri/entornos/proyecto_final/proyecto_final_entornos/greenhouse_system
 python3 -m venv .venv
-```
-
-### 4. Activar entorno virtual
-```bash
 source .venv/bin/activate
-```
-
-### 5. Instalar dependencias (en una sola terminal, ANTES de activar el entorno en las demás)
-```bash
 pip install -r requirements.txt
 ```
 
-### 6. Ejecutar servidores en terminales separadas 
+### Base de datos
 
-OJO: Con el entorno virtual activo en las tres terminales.
-
-- Terminal 1: Servidor Clima
 ```bash
-python servidores/servidor_clima.py
-```
-
-- Terminal 2: Servidor Riego
-```bash
-python servidores/servidor_riego.py
-```
-
-- Terminal 3: Servidor Plantas
-```bash
-python servidores/servidor_plantas.py
-```
-
-## Pasos para la ejecución (Database, 1 terminal)
-
-### 1. Levantar base de datos MySQL con Docker
-```bash
-docker run -d \
-  --name greenhouse-db \
-  -e MYSQL_ROOT_PASSWORD=rootpass \
-  -p 3306:3306 \
-  -v greenhouse_data:/var/lib/mysql \
-  mysql:8
-```
-
-### 2. Entrar en la carpeta del proyecto y de greenhouse
-```bash
-cd proyecto_final_entornos/greenhouse_system
-```
-
-### 3. Crear entorno virtual
-```bash
-python3 -m venv .venv
-```
-
-### 4. Activar entorno virtual
-```bash
+docker run -d --name greenhouse-db -e MYSQL_ROOT_PASSWORD=rootpass -p 3306:3306 -v greenhouse_data:/var/lib/mysql mysql:8
+cd /home/Agusti/tercero/primer_quatri/entornos/proyecto_final/proyecto_final_entornos/greenhouse_system
 source .venv/bin/activate
+python3 database/database_setup.py
 ```
 
-### 5. Configurar la base de datos (solo una vez)
+### Sensores OPC UA (3 terminales, siempre dentro de `.../greenhouse_system` con el venv activo)
+
 ```bash
-python database/database_setup.py
+# Terminal A
+python3 servidores/servidor_clima.py
+
+# Terminal B
+python3 servidores/servidor_riego.py
+
+# Terminal C
+python3 servidores/servidor_plantas.py
 ```
 
-### 6. Acceder a la base de datos:
+### Middleware (2 terminales adicionales, mismo directorio y venv)
+
+```bash
+# Terminal D (servidor primero)
+python3 middleware/middleware_servidor.py
+
+# Terminal E
+python3 middleware/middleware_cliente.py
+```
+
+### Dashboard web (1 terminal más)
+
+```bash
+cd /home/Agusti/tercero/primer_quatri/entornos/proyecto_final/proyecto_final_entornos/greenhouse_system
+source .venv/bin/activate
+python3 -m dashboard.app
+```
+
+Abrir `http://127.0.0.1:8050` en el navegador.
+
+### Verificación opcional en MySQL
 
 ```bash
 mysql -h 127.0.0.1 -P 3306 -u root -p
-```
-
-Con la contraseña "rootpass"
-
-### 7. Dentro de la base de datos:
-
-```bash
 USE greenhouse;
-```
-
-Hay cinco tablas: riego_data, clima_data, plantas_data, resultados_funciones y alertas_criticas.
-Para ver los datos (ejemplo):
-
-```bash
-SELECT * FROM clima_data LIMIT 10;
-```
-
-CTRL + D para salir
-
-
-## Pasos para la ejecución (Middleware, 2 terminales)
-
-### 1. Entrar en la carpeta del proyecto y de greenhouse
-```bash
-cd proyecto_final_entornos/greenhouse_system
-```
-
-### 2. Crear entorno virtual
-```bash
-python3 -m venv .venv
-```
-
-### 3. Activar entorno virtual
-```bash
-source .venv/bin/activate
-```
-
-### 4. Ejecutar servidores en terminales separadas 
-
-OJO: Primero el servidor.
-
-- Terminal 1: Servidor
-```bash
-python middleware/middleware_servidor.py
-```
-
-- Terminal 2: Cliente
-```bash
-python middleware/middleware_cliente.py
+SELECT * FROM clima_data ORDER BY timestamp DESC LIMIT 5;
 ```
