@@ -54,6 +54,20 @@ def create_layout() -> html.Div:
                 ],
                 className="history-section",
             ),
+            html.Section(
+                [
+                    html.H2("Informes"),
+                    html.Button(
+                        "Generar informe diario",
+                        id="btn-generar-informe",
+                        className="report-button",
+                        n_clicks=0,
+                    ),
+                    html.Div(id="report-status", className="report-status"),
+                    dcc.Download(id="download-informe"),
+                ],
+                className="report-section",
+            ),
         ],
         className="app-container",
     )

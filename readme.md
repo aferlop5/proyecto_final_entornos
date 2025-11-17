@@ -87,6 +87,12 @@ source .venv/bin/activate
 python3 database/database_setup.py
 ```
 
+Si el contenedor ya existe de ejecuciones anteriores, simplemente vuelve a iniciarlo con:
+
+```bash
+docker start greenhouse-db
+```
+
 ### Sensores OPC UA (3 terminales, siempre dentro de `.../greenhouse_system` con el venv activo)
 
 ```bash

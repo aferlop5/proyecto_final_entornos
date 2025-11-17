@@ -4,10 +4,12 @@ from __future__ import annotations
 from datetime import datetime
 from typing import Any, Dict, List, Optional
 
-from dash import Dash, Input, Output, dcc, html
+from dash import Dash, Input, Output, dcc, html, no_update
+from dash.exceptions import PreventUpdate
 import plotly.graph_objects as go
 
 from .data_fetcher import DataFetcher
+from informes.latex_generator import ReportGenerator
 
 
 def _safe_float(value: Optional[Any]) -> Optional[float]:
@@ -211,6 +213,7 @@ def _build_historical(processed: List[Dict[str, Any]]) -> go.Figure:
 
 def register_callbacks(app: Dash) -> None:
     fetcher = DataFetcher()
+    report_generator = ReportGenerator()
 
     @app.callback(
         [
@@ -309,3 +312,38 @@ def register_callbacks(app: Dash) -> None:
             zone_text,
             historical_figure,
         )
+
+    @app.callback(
+        [Output("report-status", "children"), Output("download-informe", "data")],
+        Input("btn-generar-informe", "n_clicks"),
+        prevent_initial_call=True,
+    )
+    def generar_informe(n_clicks):
+        if not n_clicks:
+            raise PreventUpdate
+
+        try:
+            result = report_generator.generate_daily_report(compile_pdf=True)
+            pdf_path = result.get("pdf")
+            tex_path = result["tex"]
+            nombre = pdf_path.name if pdf_path else tex_path.name
+            mensaje = html.Span(
+                f"Informe generado el {datetime.now().strftime('%d/%m/%Y %H:%M')}: {nombre}",
+                className="status-ok",
+            )
+            download_path = pdf_path or tex_path
+            return mensaje, dcc.send_file(str(download_path))
+        except RuntimeError as exc:
+            # Si no hay PDF disponible, intenta devolver al menos el archivo LaTeX.
+            try:
+                result = report_generator.generate_daily_report(compile_pdf=False)
+                tex_path = result["tex"]
+                mensaje = html.Span(
+                    f"Informe LaTeX generado (PDF no disponible): {tex_path.name}",
+                    className="status-warning",
+                )
+                return mensaje, dcc.send_file(str(tex_path))
+            except Exception:  # pragma: no cover - error inesperado
+                return html.Span(str(exc), className="status-error"), no_update
+        except Exception as exc:  # pragma: no cover - error inesperado
+            return html.Span(f"Error al generar el informe: {exc}", className="status-error"), no_update

@@ -1,11 +1,49 @@
 import asyncio
 import json
+import signal
+import sys
 from datetime import datetime
+from pathlib import Path
+
 import database_handler as db
 import algoritmos
 
+PROJECT_ROOT = Path(__file__).resolve().parents[1]
+if str(PROJECT_ROOT) not in sys.path:
+    sys.path.insert(0, str(PROJECT_ROOT))
+
+from informes.latex_generator import ReportGenerator
+
 HOST = "127.0.0.1"
 PORT = 5000
+
+
+class GracefulShutdown:
+    def __init__(self, report_generator: ReportGenerator | None = None):
+        self.report_generator = report_generator or ReportGenerator()
+        self.server = None
+        signal.signal(signal.SIGINT, self.shutdown)
+        signal.signal(signal.SIGTERM, self.shutdown)
+
+    def register_server(self, server) -> None:
+        self.server = server
+
+    def shutdown(self, signum, frame):
+        print("Generando informe final...")
+        try:
+            result = self.report_generator.generate_daily_report("informe_final", compile_pdf=True)
+            pdf_path = result.get("pdf")
+            tex_path = result.get("tex")
+            if pdf_path:
+                print(f"Informe PDF generado en {pdf_path}")
+            if tex_path:
+                print(f"Informe LaTeX disponible en {tex_path}")
+        except Exception as exc:  # pragma: no cover - logging en parada
+            print(f"Error al generar el informe final: {exc}")
+        if self.server:
+            self.server.close()
+        sys.exit(0)
+
 
 async def handle_client(reader, writer):
     addr = writer.get_extra_info('peername')
@@ -123,14 +161,18 @@ async def handle_client(reader, writer):
     print(f"Conexión cerrada {addr}")
 
 
-async def main():
+async def main(shutdown_handler: GracefulShutdown | None = None):
+    shutdown_handler = shutdown_handler or GracefulShutdown()
     server = await asyncio.start_server(handle_client, HOST, PORT)
     addr = server.sockets[0].getsockname()
     print(f"Middleware servidor escuchando en {addr}")
+
+    shutdown_handler.register_server(server)
 
     async with server:
         await server.serve_forever()
 
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    shutdown_handler = GracefulShutdown()
+    asyncio.run(main(shutdown_handler))
