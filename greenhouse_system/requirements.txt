@@ -2,3 +2,6 @@ asyncua==1.1.8
 mysql-connector-python
 dash
 plotly
+pandas
+matplotlib
+seaborn

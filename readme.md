@@ -56,7 +56,8 @@ El módulo **middleware_servidor**:
 
 Se añade un dashboard web basado en **Dash + Plotly** que muestra en tiempo real los KPIs principales, gráficas históricas y alertas activas:
 
-- Carpeta `dashboard/` con los módulos `app.py`, `layout.py`, `callbacks.py`, `data_fetcher.py` y estilos en `assets/style.css`.
+- Carpeta `dashboard/` con los módulos `layout.py`, `callbacks.py`, `data_fetcher.py` y estilos en `assets/style.css`.
+- El punto de entrada del dashboard vive en `clientes/app.py`, dentro del nuevo paquete de clientes interactivos.
 - El dashboard refresca la información cada 2 segundos empleando consultas a MySQL mediante `DataFetcher`.
 - Visualizaciones específicas:
   - Clima: gauge de temperatura, líneas para humedad/CO₂/presión y zona activa.
@@ -64,7 +65,7 @@ Se añade un dashboard web basado en **Dash + Plotly** que muestra en tiempo rea
   - Plantas: barras de progreso de crecimiento/salud e indicadores de cantidad y calidad de frutos.
   - Alertas: panel coloreado según severidad.
 
-> Nota: `requirements.txt` incluye ahora `dash` y `plotly`. Instálalas dentro del entorno virtual antes de levantar el dashboard.
+> Nota: `requirements.txt` incluye ahora dependencias de visualización y análisis (`dash`, `plotly`, `pandas`, `matplotlib`, `seaborn`). Instálalas dentro del entorno virtual antes de levantar cualquier cliente.
 
 
 ## Guía de ejecución actualizada (Sprint 3)
@@ -116,15 +117,27 @@ python3 middleware/middleware_servidor.py
 python3 middleware/middleware_cliente.py
 ```
 
-### Dashboard web (1 terminal más)
+### Clientes interactivos (1 terminal por cliente)
+
+#### Dashboard web
 
 ```bash
 cd /home/Agusti/tercero/primer_quatri/entornos/proyecto_final/proyecto_final_entornos/greenhouse_system
 source .venv/bin/activate
-python3 -m dashboard.app
+python3 -m clientes.app
 ```
 
-Abrir `http://127.0.0.1:8050` en el navegador.
+Abrir `http://127.0.0.1:8050` en el navegador. (El comando anterior sustituye al antiguo `python3 -m dashboard.app`, que sigue funcionando por compatibilidad.)
+
+#### Cliente de análisis estadístico
+
+```bash
+cd /home/Agusti/tercero/primer_quatri/entornos/proyecto_final/proyecto_final_entornos/greenhouse_system
+source .venv/bin/activate
+python3 clientes/cliente_estadisticas.py
+```
+
+El menú ofrece 9 opciones de análisis, genera gráficos/CSV en `greenhouse_system/resultados_cliente_estadisticas/` y permite cancelar cualquier operación con `q`.
 
 ### Verificación opcional en MySQL
 

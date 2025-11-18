@@ -1,18 +1,11 @@
-"""Entry point for running the Dash dashboard."""
+"""Compatibilidad retroactiva para el dashboard.
+
+El dashboard se encuentra ahora en ``greenhouse_system.clientes.app``.
+Este módulo reexpone los objetos principales para evitar importaciones rotas.
+"""
 from __future__ import annotations
 
-import dash
-
-from .layout import create_layout
-from .callbacks import register_callbacks
-
-
-app = dash.Dash(__name__, title="Greenhouse Dashboard", suppress_callback_exceptions=True)
-app.layout = create_layout()
-register_callbacks(app)
-
-# Expose Flask server for production deployments (gunicorn, etc.)
-server = app.server
+from greenhouse_system.clientes.app import app, server
 
 
 if __name__ == "__main__":
