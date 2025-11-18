@@ -1,49 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
-<UANodeSet xmlns="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd">
+<UANodeSet xmlns="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd"
+           xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd"
+           xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <NamespaceUris>
     <Uri>http://invernadero.org/plantas</Uri>
   </NamespaceUris>
+  
+  <Aliases>
+    <Alias Alias="Float">i=10</Alias>
+    <Alias Alias="Int32">i=6</Alias>
+    <Alias Alias="String">i=12</Alias>
+    <Alias Alias="HasComponent">i=47</Alias>
+    <Alias Alias="HasSubtype">i=45</Alias>
+    <Alias Alias="HasTypeDefinition">i=40</Alias>
+    <Alias Alias="BaseDataVariableType">i=63</Alias>
+    <Alias Alias="BaseObjectType">i=58</Alias>
+  </Aliases>
 
   <UAObjectType NodeId="ns=1;i=1002" BrowseName="1:PlantasType">
     <DisplayName>PlantasType</DisplayName>
+    <Description>Tipo de objeto para información de plantas</Description>
+    <References>
+      <Reference ReferenceType="HasSubtype" IsForward="false">i=58</Reference>
+    </References>
   </UAObjectType>
 
-  <UAObject NodeId="ns=1;i=2001" BrowseName="1:Plantas" TypeDefinition="1:PlantasType">
+  <UAObject NodeId="ns=1;i=2001" BrowseName="1:Plantas">
     <DisplayName>Plantas</DisplayName>
-
-    <UAVariable NodeId="ns=1;i=2101" BrowseName="1:Crecimiento" DataType="Float">
-      <DisplayName>Crecimiento</DisplayName>
-      <Value>
-        <Float>15.0</Float>
-      </Value>
-    </UAVariable>
-
-    <UAVariable NodeId="ns=1;i=2102" BrowseName="1:CantidadFrutos" DataType="Int32">
-      <DisplayName>CantidadFrutos</DisplayName>
-      <Value>
-        <Int32>0</Int32>
-      </Value>
-    </UAVariable>
-
-    <UAVariable NodeId="ns=1;i=2103" BrowseName="1:CalidadFrutos" DataType="Float">
-      <DisplayName>CalidadFrutos</DisplayName>
-      <Value>
-        <Float>0.0</Float>
-      </Value>
-    </UAVariable>
-
-    <UAVariable NodeId="ns=1;i=2104" BrowseName="1:EspeciePlanta" DataType="String">
-      <DisplayName>EspeciePlanta</DisplayName>
-      <Value>
-        <String>Tomate</String>
-      </Value>
-    </UAVariable>
-
-    <UAVariable NodeId="ns=1;i=2105" BrowseName="1:NivelSalud" DataType="Float">
-      <DisplayName>NivelSalud</DisplayName>
-      <Value>
-        <Float>85.0</Float>
-      </Value>
-    </UAVariable>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1002</Reference>
+    </References>
   </UAObject>
+
+  <!-- Variables del objeto Plantas -->
+  <UAVariable NodeId="ns=1;i=2101" BrowseName="1:Crecimiento" DataType="Float" ParentNodeId="ns=1;i=2001">
+    <DisplayName>Crecimiento</DisplayName>
+    <Description>Crecimiento de la planta en centímetros</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=2001</Reference>
+    </References>
+    <Value>
+      <uax:Float>15.0</uax:Float>
+    </Value>
+  </UAVariable>
+
+  <UAVariable NodeId="ns=1;i=2102" BrowseName="1:CantidadFrutos" DataType="Int32" ParentNodeId="ns=1;i=2001">
+    <DisplayName>CantidadFrutos</DisplayName>
+    <Description>Cantidad total de frutos producidos</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=2001</Reference>
+    </References>
+    <Value>
+      <uax:Int32>0</uax:Int32>
+    </Value>
+  </UAVariable>
+
+  <UAVariable NodeId="ns=1;i=2103" BrowseName="1:CalidadFrutos" DataType="Float" ParentNodeId="ns=1;i=2001">
+    <DisplayName>CalidadFrutos</DisplayName>
+    <Description>Calidad de los frutos (escala 0-100)</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=2001</Reference>
+    </References>
+    <Value>
+      <uax:Float>0.0</uax:Float>
+    </Value>
+  </UAVariable>
+
+  <UAVariable NodeId="ns=1;i=2104" BrowseName="1:EspeciePlanta" DataType="String" ParentNodeId="ns=1;i=2001">
+    <DisplayName>EspeciePlanta</DisplayName>
+    <Description>Especie o variedad de la planta</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=2001</Reference>
+    </References>
+    <Value>
+      <uax:String>Tomate</uax:String>
+    </Value>
+  </UAVariable>
+
+  <UAVariable NodeId="ns=1;i=2105" BrowseName="1:NivelSalud" DataType="Float" ParentNodeId="ns=1;i=2001">
+    <DisplayName>NivelSalud</DisplayName>
+    <Description>Nivel de salud de la planta (escala 0-100)</Description>
+    <References>
+      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=2001</Reference>
+    </References>
+    <Value>
+      <uax:Float>85.0</uax:Float>
+    </Value>
+  </UAVariable>
 </UANodeSet>
