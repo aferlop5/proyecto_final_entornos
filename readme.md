@@ -124,10 +124,10 @@ python3 middleware/middleware_cliente.py
 ```bash
 cd /home/Agusti/tercero/primer_quatri/entornos/proyecto_final/proyecto_final_entornos/greenhouse_system
 source .venv/bin/activate
-python3 -m clientes.app
+python3 clientes/app.py
 ```
 
-Abrir `http://127.0.0.1:8050` en el navegador. (El comando anterior sustituye al antiguo `python3 -m dashboard.app`, que sigue funcionando por compatibilidad.)
+Abrir `http://127.0.0.1:8050` en el navegador. (También puedes usar `python3 -m clientes.app` si prefieres el modo módulo.)
 
 #### Cliente de análisis estadístico
 

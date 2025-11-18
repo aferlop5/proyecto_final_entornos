@@ -1,10 +1,37 @@
 """Punto de entrada para ejecutar el dashboard web de invernadero."""
 from __future__ import annotations
 
+import sys
+from pathlib import Path
+
 import dash
 
-from greenhouse_system.dashboard.layout import create_layout
-from greenhouse_system.dashboard.callbacks import register_callbacks
+
+def _asegurar_ruta_paquete() -> None:
+    """Garantiza que el paquete ``greenhouse_system`` sea importable.
+
+    Esto permite ejecutar el archivo tanto con ``python -m clientes.app`` como
+    directamente con ``python clientes/app.py``.
+    """
+
+    paquete_ya_disponible = "greenhouse_system" in sys.modules
+    if paquete_ya_disponible:
+        return
+
+    try:
+        import greenhouse_system  # type: ignore # noqa:F401 (comprobación rápida)
+        return
+    except ModuleNotFoundError:
+        raiz_proyecto = Path(__file__).resolve().parents[2]
+        ruta_raiz = str(raiz_proyecto)
+        if ruta_raiz not in sys.path:
+            sys.path.insert(0, ruta_raiz)
+
+
+_asegurar_ruta_paquete()
+
+from greenhouse_system.dashboard.layout import create_layout  # noqa:E402
+from greenhouse_system.dashboard.callbacks import register_callbacks  # noqa:E402
 
 
 app = dash.Dash(
