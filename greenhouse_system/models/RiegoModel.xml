@@ -1,94 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<UANodeSet xmlns="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd"
-           xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd"
-           xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <NamespaceUris>
-    <Uri>http://invernadero.org/riego</Uri>
-  </NamespaceUris>
-  
-  <Aliases>
-    <Alias Alias="Float">i=10</Alias>
-    <Alias Alias="HasComponent">i=47</Alias>
-    <Alias Alias="HasSubtype">i=45</Alias>
-    <Alias Alias="HasTypeDefinition">i=40</Alias>
-    <Alias Alias="BaseDataVariableType">i=63</Alias>
-    <Alias Alias="BaseObjectType">i=58</Alias>
-  </Aliases>
-
-  <UAObjectType NodeId="ns=1;i=1003" BrowseName="1:RiegoType">
-    <DisplayName>RiegoType</DisplayName>
-    <Description>Tipo de objeto para sistema de riego</Description>
-    <References>
-      <Reference ReferenceType="HasSubtype" IsForward="false">i=58</Reference>
-    </References>
-  </UAObjectType>
-
-  <UAObject NodeId="ns=1;i=2002" BrowseName="1:Riego">
-    <DisplayName>Riego</DisplayName>
-    <References>
-      <Reference ReferenceType="HasTypeDefinition">ns=1;i=1003</Reference>
-    </References>
-  </UAObject>
-
-  <!-- Variables del objeto Riego -->
-  <UAVariable NodeId="ns=1;i=2201" BrowseName="1:pH" DataType="Float" ParentNodeId="ns=1;i=2002">
-    <DisplayName>pH</DisplayName>
-    <Description>Nivel de pH del agua de riego</Description>
-    <References>
-      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
-      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=2002</Reference>
-    </References>
-    <Value>
-      <uax:Float>6.5</uax:Float>
-    </Value>
-  </UAVariable>
-
-  <UAVariable NodeId="ns=1;i=2202" BrowseName="1:Conductividad" DataType="Float" ParentNodeId="ns=1;i=2002">
-    <DisplayName>Conductividad</DisplayName>
-    <Description>Conductividad eléctrica del agua (dS/m)</Description>
-    <References>
-      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
-      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=2002</Reference>
-    </References>
-    <Value>
-      <uax:Float>1.8</uax:Float>
-    </Value>
-  </UAVariable>
-
-  <UAVariable NodeId="ns=1;i=2203" BrowseName="1:Flujo" DataType="Float" ParentNodeId="ns=1;i=2002">
-    <DisplayName>Flujo</DisplayName>
-    <Description>Flujo de agua actual (litros/minuto)</Description>
-    <References>
-      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
-      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=2002</Reference>
-    </References>
-    <Value>
-      <uax:Float>2.0</uax:Float>
-    </Value>
-  </UAVariable>
-
-  <UAVariable NodeId="ns=1;i=2204" BrowseName="1:NivelDeposito" DataType="Float" ParentNodeId="ns=1;i=2002">
-    <DisplayName>NivelDeposito</DisplayName>
-    <Description>Nivel del depósito de agua (porcentaje)</Description>
-    <References>
-      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
-      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=2002</Reference>
-    </References>
-    <Value>
-      <uax:Float>80.0</uax:Float>
-    </Value>
-  </UAVariable>
-
-  <UAVariable NodeId="ns=1;i=2205" BrowseName="1:CaudalHistorico" DataType="Float" ParentNodeId="ns=1;i=2002">
-    <DisplayName>CaudalHistorico</DisplayName>
-    <Description>Caudal histórico promedio (litros/minuto)</Description>
-    <References>
-      <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
-      <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=2002</Reference>
-    </References>
-    <Value>
-      <uax:Float>1.5</uax:Float>
-    </Value>
-  </UAVariable>
+<UANodeSet LastModified="2025-11-18T19:06:05.858Z" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://opcfoundation.org/UA/2011/03/UANodeSet.xsd" xmlns:uax="http://opcfoundation.org/UA/2008/02/Types.xsd" xmlns:si="http://www.siemens.com/OPCUA/2017/SimaticNodeSetExtensions" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+    <NamespaceUris>
+        <Uri>http://invernadero.org/riego</Uri>
+    </NamespaceUris>
+    <Models>
+        <Model ModelUri="http://invernadero.org/riego" PublicationDate="2025-11-18T00:00:00Z" Version="1.00">
+            <RequiredModel ModelUri="http://opcfoundation.org/UA/" PublicationDate="2023-12-15T00:00:00Z" Version="1.05.03"/>
+        </Model>
+    </Models>
+    <Aliases>
+        <Alias Alias="Float">i=10</Alias>
+        <Alias Alias="HasComponent">i=47</Alias>
+        <Alias Alias="HasSubtype">i=45</Alias>
+        <Alias Alias="HasTypeDefinition">i=40</Alias>
+    </Aliases>
+    <Extensions>
+        <Extension>
+            <si:Generator Product="SiOME" Edition="Standard" Version="3.0.3"/>
+        </Extension>
+        <Extension>
+            <si:GeneratorExtension Hash="8aad6f5aeba883585f3645f4b784f913"/>
+        </Extension>
+    </Extensions>
+    <UAObjectType NodeId="ns=1;i=1003" BrowseName="1:RiegoType">
+        <DisplayName>RiegoType</DisplayName>
+        <Description>Tipo de objeto para sistema de riego</Description>
+        <References>
+            <Reference ReferenceType="HasSubtype" IsForward="false">i=58</Reference>
+        </References>
+    </UAObjectType>
+    <UAObject NodeId="ns=1;i=2002" BrowseName="1:Riego">
+        <DisplayName>Riego</DisplayName>
+        <References>
+            <Reference ReferenceType="HasTypeDefinition">ns=1;i=1003</Reference>
+        </References>
+    </UAObject>
+    <UAVariable DataType="Float" NodeId="ns=1;i=2201" BrowseName="1:pH" ParentNodeId="ns=1;i=2002">
+        <DisplayName>pH</DisplayName>
+        <Description>Nivel de pH del agua de riego</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=2002</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+        <Value>
+            <uax:Float>6.5</uax:Float>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="Float" NodeId="ns=1;i=2202" BrowseName="1:Conductividad" ParentNodeId="ns=1;i=2002">
+        <DisplayName>Conductividad</DisplayName>
+        <Description>Conductividad eléctrica del agua (dS/m)</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=2002</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+        <Value>
+            <uax:Float>1.8</uax:Float>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="Float" NodeId="ns=1;i=2203" BrowseName="1:Flujo" ParentNodeId="ns=1;i=2002">
+        <DisplayName>Flujo</DisplayName>
+        <Description>Flujo de agua actual (litros/minuto)</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=2002</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+        <Value>
+            <uax:Float>2</uax:Float>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="Float" NodeId="ns=1;i=2204" BrowseName="1:NivelDeposito" ParentNodeId="ns=1;i=2002">
+        <DisplayName>NivelDeposito</DisplayName>
+        <Description>Nivel del depósito de agua (porcentaje)</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=2002</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+        <Value>
+            <uax:Float>80</uax:Float>
+        </Value>
+    </UAVariable>
+    <UAVariable DataType="Float" NodeId="ns=1;i=2205" BrowseName="1:CaudalHistorico" ParentNodeId="ns=1;i=2002">
+        <DisplayName>CaudalHistorico</DisplayName>
+        <Description>Caudal histórico promedio (litros/minuto)</Description>
+        <References>
+            <Reference ReferenceType="HasComponent" IsForward="false">ns=1;i=2002</Reference>
+            <Reference ReferenceType="HasTypeDefinition">i=63</Reference>
+        </References>
+        <Value>
+            <uax:Float>1.5</uax:Float>
+        </Value>
+    </UAVariable>
 </UANodeSet>
