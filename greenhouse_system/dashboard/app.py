@@ -1,12 +1,11 @@
-"""Compatibilidad retroactiva para el dashboard.
+"""Entrada obsoleta del dashboard.
 
-El dashboard se encuentra ahora en ``greenhouse_system.clientes.app``.
-Este módulo reexpone los objetos principales para evitar importaciones rotas.
-"""
+El dashboard se ejecuta ahora desde ``greenhouse_system/clientes/app.py``.
+Este archivo solo persiste para mostrar un mensaje claro en caso de usos
+antiguos (``python -m dashboard.app``)."""
 from __future__ import annotations
 
-from greenhouse_system.clientes.app import app, server
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
+raise RuntimeError(
+    "El dashboard se ha movido al paquete 'clientes'. Ejecuta 'python3 clientes/app.py' "
+    "(o 'python3 -m clientes.app') desde la raíz de greenhouse_system."
+)
