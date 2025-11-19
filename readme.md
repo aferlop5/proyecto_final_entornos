@@ -70,15 +70,6 @@ Se añade un dashboard web basado en **Dash + Plotly** que muestra en tiempo rea
 
 ## Guía de ejecución actualizada (Sprint 3)
 
-### Preparar entorno (una sola vez por sesión)
-
-```bash
-cd /home/Agusti/tercero/primer_quatri/entornos/proyecto_final/proyecto_final_entornos/greenhouse_system
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-```
-
 ### Base de datos
 
 ```bash
@@ -94,27 +85,11 @@ Si el contenedor ya existe de ejecuciones anteriores, simplemente vuelve a inici
 docker start greenhouse-db
 ```
 
-### Sensores OPC UA (3 terminales, siempre dentro de `.../greenhouse_system` con el venv activo)
+### Sensores OPC UA y Middleware
 
 ```bash
-# Terminal A
-python3 servidores/servidor_clima.py
-
-# Terminal B
-python3 servidores/servidor_riego.py
-
-# Terminal C
-python3 servidores/servidor_plantas.py
-```
-
-### Middleware (2 terminales adicionales, mismo directorio y venv)
-
-```bash
-# Terminal D (servidor primero)
-python3 middleware/middleware_servidor.py
-
-# Terminal E
-python3 middleware/middleware_cliente.py
+cd /home/Agusti/tercero/primer_quatri/entornos/proyecto_final/proyecto_final_entornos/greenhouse_system
+./launch_all.sh
 ```
 
 ### Clientes interactivos (1 terminal por cliente)
