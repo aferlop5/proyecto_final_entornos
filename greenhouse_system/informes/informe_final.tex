@@ -1,0 +1,78 @@
+\documentclass{article}
+\usepackage[spanish]{babel}
+\usepackage{booktabs}
+\usepackage[margin=2cm]{geometry}
+
+\title{Informe Diario - Invernadero Inteligente}
+\date{\today}
+\begin{document}
+\maketitle
+
+\section{Datos de Sensores}
+\begin{table}[h!]
+\centering
+\caption{Resumen de clima}
+\begin{tabular}{l c c c}
+\toprule
+Métrica & Promedio & Mínimo & Máximo \
+\midrule
+Temperatura (°C) & 22.31 & 20.04 & 23.89 \\
+Humedad (\textbackslash{}%) & 64.73 & 57.57 & 72.22 \\
+CO\textbackslash{}$\textbackslash{}_2\textbackslash{}$ (ppm) & 443.93 & 402.75 & 497.95 \\
+Intensidad de luz & 800.00 & 800.00 & 800.00 \\
+Presión (hPa) & 1012.28 & 1008.15 & 1017.53 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\caption{Resumen de riego}
+\begin{tabular}{l c c c}
+\toprule
+Métrica & Promedio & Mínimo & Máximo \
+\midrule
+pH & 5.95 & 5.59 & 6.40 \\
+Conductividad (mS/cm) & 1.55 & 1.23 & 1.76 \\
+Flujo (L/min) & 1.67 & 1.35 & 2.14 \\
+Nivel depósito (\textbackslash{}%) & 78.42 & 55.62 & 98.04 \\
+Caudal histórico & 1.91 & 1.12 & 2.84 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\caption{Resumen de plantas}
+\begin{tabular}{l c c c}
+\toprule
+Métrica & Promedio & Mínimo & Máximo \
+\midrule
+Crecimiento & 12.49 & 10.01 & 14.85 \\
+Cantidad de frutos & 4.94 & 0 & 10 \\
+Calidad de frutos & 49.26 & 0.51 & 94.40 \\
+Nivel de salud & 85.48 & 70.35 & 99.70 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Alertas del Sistema}
+\begin{table}[h!]
+\centering
+\caption{Resumen de alertas críticas}
+\begin{tabular}{l l l c}
+\toprule
+Zona & Especie & Alerta & Eventos \
+\midrule
+Zona\textbackslash{}_A & Pimientos & Nivel de salud bajo & 2 \\
+Zona\textbackslash{}_A & Tomates & Nivel de salud bajo & 5 \\
+Zona\textbackslash{}_B & Pimientos & Nivel de salud bajo & 2 \\
+Zona\textbackslash{}_B & Tomates & Alerta inesperada & 1 \\
+Zona\textbackslash{}_B & Tomates & Nivel de salud bajo & 5 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Recomendaciones}
+Basado en los datos recopilados...
+\end{document}
