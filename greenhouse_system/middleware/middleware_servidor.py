@@ -8,11 +8,33 @@ from pathlib import Path
 import database_handler as db
 import algoritmos
 
-PROJECT_ROOT = Path(__file__).resolve().parents[1]
-if str(PROJECT_ROOT) not in sys.path:
-    sys.path.insert(0, str(PROJECT_ROOT))
 
-from informes.latex_generator import ReportGenerator
+def _ensure_package_root() -> None:
+    """Garantiza que el paquete `greenhouse_system` sea importable.
+
+    Cuando se ejecuta este script como archivo dentro del propio directorio
+    `greenhouse_system/`, el import absoluto falla porque Python no ve el
+    directorio padre en `sys.path`. Añadimos el padre si es necesario.
+    """
+    if "greenhouse_system" in sys.modules:
+        return
+    try:
+        import greenhouse_system  # type: ignore # noqa:F401
+        return
+    except ModuleNotFoundError:
+        parent = Path(__file__).resolve().parents[1]  # directorio greenhouse_system
+        project_root = parent.parent  # padre que contiene greenhouse_system
+        if str(project_root) not in sys.path:
+            sys.path.insert(0, str(project_root))
+        try:
+            import greenhouse_system  # type: ignore # noqa:F401
+        except ModuleNotFoundError:
+            pass
+
+
+_ensure_package_root()
+
+from greenhouse_system.informes.latex_generator import ReportGenerator  # noqa:E402
 
 HOST = "127.0.0.1"
 PORT = 5000

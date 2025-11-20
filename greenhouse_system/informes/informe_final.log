@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.11.10)  19 NOV 2025 18:31
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.11.19)  20 NOV 2025 01:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -172,7 +172,7 @@ an alignment. Proceed, and I'll ignore this case.
 <inserted text> 
                 }
 l.19 T
-      emperatura (°C) & 22.31 & 20.04 & 23.89 \\
+      emperatura (°C) & 21.86 & 20.09 & 23.91 \\
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
 With luck, this will get me unwedged. But if you
@@ -183,7 +183,7 @@ my insertion and my current dilemma will both disappear.
 <inserted text> 
                 }
 l.19 T
-      emperatura (°C) & 22.31 & 20.04 & 23.89 \\
+      emperatura (°C) & 21.86 & 20.09 & 23.91 \\
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
 With luck, this will get me unwedged. But if you
@@ -194,7 +194,7 @@ my insertion and my current dilemma will both disappear.
 <inserted text> 
                 }
 l.19 T
-      emperatura (°C) & 22.31 & 20.04 & 23.89 \\
+      emperatura (°C) & 21.86 & 20.09 & 23.91 \\
 I've inserted something that you may have forgotten.
 (See the <inserted text> above.)
 With luck, this will get me unwedged. But if you
@@ -205,14 +205,14 @@ my insertion and my current dilemma will both disappear.
 <inserted text> 
                 \cr 
 l.19 T
-      emperatura (°C) & 22.31 & 20.04 & 23.89 \\
+      emperatura (°C) & 21.86 & 20.09 & 23.91 \\
 I'm guessing that you meant to end an alignment here.
 
 ! Missing { inserted.
 <inserted text> 
                 {
 l.19 T
-      emperatura (°C) & 22.31 & 20.04 & 23.89 \\
+      emperatura (°C) & 21.86 & 20.09 & 23.91 \\
 I've put in what seems to be necessary to fix
 the current column of the current alignment.
 Try to go on, since this might almost work.
@@ -221,7 +221,7 @@ Try to go on, since this might almost work.
 \@BTrule ...\doublerulesep \fi \fi \fi \@BTswitch 
                                                   
 l.19 T
-      emperatura (°C) & 22.31 & 20.04 & 23.89 \\
+      emperatura (°C) & 21.86 & 20.09 & 23.91 \\
 The control sequence at the end of the top line
 of your error message was never \def'ed. If you have
 misspelled it (e.g., `\hobx'), type `I' and the correct
@@ -230,7 +230,7 @@ and I'll forget about whatever was undefined.
 
 ! Misplaced alignment tab character &.
 l.19 Temperatura (°C) &
-                         22.31 & 20.04 & 23.89 \\
+                         21.86 & 20.09 & 23.91 \\
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
 simple: Just type `I\&' now. But if some right brace
@@ -239,8 +239,8 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.19 Temperatura (°C) & 22.31 &
-                                 20.04 & 23.89 \\
+l.19 Temperatura (°C) & 21.86 &
+                                 20.09 & 23.91 \\
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
 simple: Just type `I\&' now. But if some right brace
@@ -249,8 +249,8 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.19 Temperatura (°C) & 22.31 & 20.04 &
-                                         23.89 \\
+l.19 Temperatura (°C) & 21.86 & 20.09 &
+                                         23.91 \\
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
 simple: Just type `I\&' now. But if some right brace
@@ -262,7 +262,7 @@ might try typing `S' now just to see what is salvageable.
 \reserved@c ->\ifnum 0=`{\fi }\cr 
                                   
 l.20 H
-      umedad (\textbackslash{}%) & 64.73 & 57.57 & 72.22 \\
+      umedad (\textbackslash{}%) & 65.01 & 57.08 & 72.87 \\
 I can't figure out why you would want to use a tab mark
 or \cr or \span just now. If something like a right brace
 up above has ended a previous alignment prematurely,
@@ -291,7 +291,7 @@ LaTeX Warning: Command \textbackslash invalid in math mode on input line 21.
 
 ! Misplaced alignment tab character &.
 l.21 ...textbackslash{}_2\textbackslash{}$ (ppm) &
-                                                   443.93 & 402.75 & 497.95 \\
+                                                   447.76 & 400.51 & 499.99 \\
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
 simple: Just type `I\&' now. But if some right brace
@@ -300,8 +300,8 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.21 ...lash{}_2\textbackslash{}$ (ppm) & 443.93 &
-                                                   402.75 & 497.95 \\
+l.21 ...lash{}_2\textbackslash{}$ (ppm) & 447.76 &
+                                                   400.51 & 499.99 \\
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
 simple: Just type `I\&' now. But if some right brace
@@ -310,8 +310,8 @@ you're probably due for more error messages, and you
 might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
-l.21 ...textbackslash{}$ (ppm) & 443.93 & 402.75 &
-                                                   497.95 \\
+l.21 ...textbackslash{}$ (ppm) & 447.76 & 400.51 &
+                                                   499.99 \\
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
 simple: Just type `I\&' now. But if some right brace
@@ -323,7 +323,7 @@ might try typing `S' now just to see what is salvageable.
 \reserved@c ->\ifnum 0=`{\fi }\cr 
                                   
 l.22 I
-      ntensidad de luz & 800.00 & 800.00 & 800.00 \\
+      ntensidad de luz & 109.25 & 12.83 & 199.65 \\
 I can't figure out why you would want to use a tab mark
 or \cr or \span just now. If something like a right brace
 up above has ended a previous alignment prematurely,
@@ -332,7 +332,7 @@ might try typing `S' now just to see what is salvageable.
 
 ! Misplaced alignment tab character &.
 l.22 Intensidad de luz &
-                         800.00 & 800.00 & 800.00 \\
+                         109.25 & 12.83 & 199.65 \\
 I can't figure out why you would want to use a tab mark
 here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But
+simple: Just type `I\&' now. But i

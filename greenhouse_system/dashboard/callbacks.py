@@ -9,7 +9,7 @@ from dash.exceptions import PreventUpdate
 import plotly.graph_objects as go
 
 from .data_fetcher import DataFetcher
-from informes.latex_generator import ReportGenerator
+from greenhouse_system.informes.latex_generator import ReportGenerator
 
 
 def _safe_float(value: Optional[Any]) -> Optional[float]:

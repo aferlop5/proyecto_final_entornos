@@ -34,10 +34,13 @@ from greenhouse_system.dashboard.layout import create_layout  # noqa:E402
 from greenhouse_system.dashboard.callbacks import register_callbacks  # noqa:E402
 
 
+_assets_path = Path(__file__).resolve().parent.parent / "dashboard" / "assets"
+
 app = dash.Dash(
     __name__,
     title="Greenhouse Dashboard",
     suppress_callback_exceptions=True,
+    assets_folder=str(_assets_path),  # Cargar CSS desde dashboard/assets
 )
 app.layout = create_layout()
 register_callbacks(app)

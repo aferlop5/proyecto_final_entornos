@@ -7,7 +7,11 @@ from pathlib import Path
 import subprocess
 from typing import Dict, Iterable, List, Sequence, Tuple
 
-from middleware.database_handler import conectar
+try:
+    from greenhouse_system.middleware import database_handler as db
+except ModuleNotFoundError:
+    # Fallback si se ejecuta el script desde dentro del paquete sin resolución absoluta
+    from middleware import database_handler as db  # type: ignore
 
 
 class ReportGenerator:
@@ -157,7 +161,7 @@ class ReportGenerator:
         return "\n".join(tabla)
 
     def _fetch_data(self, query: str, params: Tuple[object, ...]) -> List[Dict[str, object]]:
-        cnx = conectar()
+        cnx = db.conectar()
         try:
             cursor = cnx.cursor(dictionary=True)
             cursor.execute(query, params)

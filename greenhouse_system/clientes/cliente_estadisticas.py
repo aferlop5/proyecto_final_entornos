@@ -15,7 +15,32 @@ import mysql.connector
 import pandas as pd
 import seaborn as sns
 
-from greenhouse_system.middleware import database_handler
+
+def _asegurar_paquete() -> None:
+    """Garantiza que el paquete ``greenhouse_system`` sea importable.
+
+    Permite ejecutar el archivo directamente (`python clientes/cliente_estadisticas.py`)
+    o como módulo (`python -m greenhouse_system.clientes.cliente_estadisticas`).
+    """
+    if "greenhouse_system" in sys.modules:
+        return
+    try:
+        import greenhouse_system  # type: ignore # noqa:F401
+        return
+    except ModuleNotFoundError:
+        raiz = Path(__file__).resolve().parents[2]
+        ruta = str(raiz)
+        if ruta not in sys.path:
+            sys.path.insert(0, ruta)
+        try:
+            import greenhouse_system  # type: ignore # noqa:F401
+        except ModuleNotFoundError:
+            pass
+
+
+_asegurar_paquete()
+
+from greenhouse_system.middleware import database_handler  # noqa:E402
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 RESULTS_DIR = BASE_DIR / "resultados_cliente_estadisticas"

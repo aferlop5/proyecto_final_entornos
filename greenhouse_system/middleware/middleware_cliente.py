@@ -1,6 +1,33 @@
 import asyncio
 import json
+import sys
+from pathlib import Path
 from asyncua import Client, ua
+
+
+def _ensure_package_root() -> None:
+    """Asegura que el paquete `greenhouse_system` sea importable.
+
+    No es estrictamente necesario aquí, pero mantiene consistencia si en el
+    futuro este cliente necesita imports absolutos del paquete.
+    """
+    if "greenhouse_system" in sys.modules:
+        return
+    try:
+        import greenhouse_system  # type: ignore # noqa:F401
+        return
+    except ModuleNotFoundError:
+        parent = Path(__file__).resolve().parents[1]
+        project_root = parent.parent
+        if str(project_root) not in sys.path:
+            sys.path.insert(0, str(project_root))
+        try:
+            import greenhouse_system  # type: ignore # noqa:F401
+        except ModuleNotFoundError:
+            pass
+
+
+_ensure_package_root()
 
 MIDDLEWARE_SERVER_IP = "127.0.0.1"
 MIDDLEWARE_SERVER_PORT = 5000

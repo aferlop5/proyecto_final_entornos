@@ -3,8 +3,14 @@
 # Obtener ruta absoluta del directorio donde está este script
 BASE_DIR="$(cd "$(dirname "$0")" && pwd)"
 
-# Activar entorno virtual
-source "$BASE_DIR/.venv/bin/activate"
+# Activar entorno virtual si existe
+if [ -d "$BASE_DIR/.venv" ]; then
+    # shellcheck source=/dev/null
+    source "$BASE_DIR/.venv/bin/activate"
+    echo "Entorno virtual activado (.venv)"
+else
+    echo "[AVISO] No se encontró .venv. Usando python del sistema."
+fi
 
 # Función para liberar puertos ocupados
 kill_port() {
