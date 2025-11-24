@@ -111,22 +111,32 @@ def _alert_color(tipo_alerta: str) -> str:
     return "alert-info"
 
 
-def _build_alerts(alerts: List[Dict[str, Any]]):
+def _build_alert_cards(alerts: List[Dict[str, Any]], empty_message: str):
     if not alerts:
-        return html.Div("Sin alertas activas", className="alert-card alert-ok")
+        return [html.Div(empty_message, className="alert-card alert-ok")]
 
-    return [
-        html.Div(
-            [
-                html.H4(alert.get("tipo_alerta", "Alerta")),
-                html.P(f"Zona: {alert.get('zona', 'N/D')}", className="alert-meta"),
-                html.P(f"Especie: {alert.get('especie', 'N/D')}", className="alert-meta"),
-                html.P(_parse_time(alert.get("timestamp")).strftime("%d/%m %H:%M") if _parse_time(alert.get("timestamp")) else ""),
-            ],
-            className=f"alert-card {_alert_color(alert.get('tipo_alerta', ''))}",
+    cards = []
+    for alert in alerts:
+        timestamp = _parse_time(alert.get("timestamp"))
+        cards.append(
+            html.Div(
+                [
+                    html.H4(alert.get("tipo_alerta", "Alerta")),
+                    html.P(f"Especie: {alert.get('especie', 'N/D')}", className="alert-meta"),
+                    html.Div(
+                        [
+                            html.Span(
+                                timestamp.strftime("%d/%m %H:%M") if timestamp else "",
+                                className="alert-timestamp",
+                            ),
+                        ],
+                        className="alert-footer",
+                    ),
+                ],
+                className=f"alert-card {_alert_color(alert.get('tipo_alerta', ''))}",
+            )
         )
-        for alert in alerts
-    ]
+    return cards
 
 
 def _build_kpis(latest: Dict[str, Optional[Dict[str, Any]]], processed: List[Dict[str, Any]]):
@@ -202,15 +212,29 @@ def _build_historical(processed: List[Dict[str, Any]]) -> go.Figure:
         )
     )
 
+    # Reservamos espacio a la derecha para colocar los ejes secundarios sin perder proporción.
     figure.update_layout(
         title="Indicadores procesados",
         height=360,
-        margin=dict(l=20, r=100, t=50, b=40),
+        margin=dict(l=20, r=130, t=50, b=40),
         legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
         yaxis=dict(title="Índices", range=[0, 1.05]),
-        yaxis2=dict(title="Frutos", overlaying="y", side="right"),
-        yaxis3=dict(title="Necesidad riego", overlaying="y", side="right", position=0.9, range=[0, 1.05]),
-        xaxis_title="Tiempo",
+        yaxis2=dict(
+            title="Frutos",
+            overlaying="y",
+            side="right",
+            anchor="free",
+            position=0.9,
+        ),
+        yaxis3=dict(
+            title="Necesidad riego",
+            overlaying="y",
+            side="right",
+            anchor="free",
+            position=0.97,
+            range=[0, 1.05],
+        ),
+        xaxis=dict(domain=[0, 0.86], title="Tiempo"),
     )
     return figure
 
@@ -224,7 +248,8 @@ def register_callbacks(app: Dash) -> None:
             Output("clima-data", "children"),
             Output("riego-data", "children"),
             Output("plantas-data", "children"),
-            Output("alert-panel", "children"),
+            Output("alert-zone-a", "children"),
+            Output("alert-zone-b", "children"),
             Output("kpi-container", "children"),
             Output("clima-zone", "children"),
             Output("historical-charts", "figure"),
@@ -302,7 +327,14 @@ def register_callbacks(app: Dash) -> None:
             ),
         ]
 
-        alert_children = _build_alerts(alerts)
+        alerts_by_zone: Dict[str, List[Dict[str, Any]]] = {"zona_a": [], "zona_b": []}
+        for alert in alerts:
+            zone = (alert.get("zona") or "").lower()
+            if zone in alerts_by_zone:
+                alerts_by_zone[zone].append(alert)
+
+        zone_a_children = _build_alert_cards(alerts_by_zone["zona_a"], "Sin alertas en Zona A")
+        zone_b_children = _build_alert_cards(alerts_by_zone["zona_b"], "Sin alertas en Zona B")
         kpi_children = _build_kpis(latest, processed)
         zone_text = clima_latest.get("zona", "N/D")
         historical_figure = _build_historical(processed)
@@ -311,7 +343,8 @@ def register_callbacks(app: Dash) -> None:
             clima_children,
             riego_children,
             plantas_children,
-            alert_children,
+            zone_a_children,
+            zone_b_children,
             kpi_children,
             zone_text,
             historical_figure,

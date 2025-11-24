@@ -49,7 +49,25 @@ def create_layout() -> html.Div:
             html.Section(
                 [
                     html.H2("Alertas"),
-                    html.Div(id="alert-panel", className="alert-section"),
+                    html.Div(
+                        [
+                            html.Div(
+                                [
+                                    html.H3("Zona A"),
+                                    html.Div(id="alert-zone-a", className="alert-section"),
+                                ],
+                                className="alert-column zone-a-column",
+                            ),
+                            html.Div(
+                                [
+                                    html.H3("Zona B"),
+                                    html.Div(id="alert-zone-b", className="alert-section"),
+                                ],
+                                className="alert-column zone-b-column",
+                            ),
+                        ],
+                        className="alert-columns",
+                    ),
                 ],
                 className="alerts-section",
             ),
