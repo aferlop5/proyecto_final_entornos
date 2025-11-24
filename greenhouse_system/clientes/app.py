@@ -50,4 +50,5 @@ server = app.server
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # app.run(debug=True)  # Descomenta esta línea para desarrollo (muestra DevTools)
+    app.run(debug=False) # Usa esta línea para producción (oculta DevTools)
