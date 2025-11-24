@@ -70,12 +70,21 @@ Se añade un dashboard web basado en **Dash + Plotly** que muestra en tiempo rea
 
 ## Guía de ejecución actualizada (Sprint 3)
 
-### Base de datos
+### Inicialización (1 terminal)
+
+```bash
+git clone https://github.com/aferlop5/proyecto_final_entornos
+cd /home/Agusti/tercero/primer_quatri/entornos/proyecto_final/proyecto_final_entornos/greenhouse_system
+python3 -m venv .venv
+source .venv/bin/activate
+pip install --upgrade pip
+pip install -r requirements.txt
+```
+
+### Base de datos (En la misma terminal)
 
 ```bash
 docker run -d --name greenhouse-db -e MYSQL_ROOT_PASSWORD=rootpass -p 3306:3306 -v greenhouse_data:/var/lib/mysql mysql:8
-cd /home/Agusti/tercero/primer_quatri/entornos/proyecto_final/proyecto_final_entornos/greenhouse_system
-source .venv/bin/activate
 python3 database/database_setup.py
 ```
 
@@ -85,10 +94,9 @@ Si el contenedor ya existe de ejecuciones anteriores, simplemente vuelve a inici
 docker start greenhouse-db
 ```
 
-### Sensores OPC UA y Middleware
+### Sensores OPC UA y Middleware (En la misma terminal)
 
 ```bash
-cd /home/Agusti/tercero/primer_quatri/entornos/proyecto_final/proyecto_final_entornos/greenhouse_system
 ./launch_all.sh
 ```
 
