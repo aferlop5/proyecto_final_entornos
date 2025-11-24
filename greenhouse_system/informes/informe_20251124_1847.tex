@@ -1,0 +1,81 @@
+\documentclass{article}
+\usepackage[spanish]{babel}
+\usepackage{booktabs}
+\usepackage[margin=2cm]{geometry}
+
+\title{Informe Diario - Invernadero Inteligente}
+\date{\today}
+\begin{document}
+\maketitle
+
+\section{Datos de Sensores}
+\begin{table}[h!]
+\centering
+\caption{Resumen de clima}
+\begin{tabular}{l c c c}
+\toprule
+Métrica & Promedio & Mínimo & Máximo \
+\midrule
+Temperatura (°C) & 22.11 & 20.05 & 23.98 \\
+Humedad (\textbackslash{}%) & 65.25 & 57.18 & 72.70 \\
+CO\textbackslash{}$\textbackslash{}_2\textbackslash{}$ (ppm) & 446.72 & 403.92 & 499.42 \\
+Intensidad de luz & 800.00 & 800.00 & 800.00 \\
+Presión (hPa) & 1012.89 & 1008.19 & 1018.00 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\caption{Resumen de riego}
+\begin{tabular}{l c c c}
+\toprule
+Métrica & Promedio & Mínimo & Máximo \
+\midrule
+pH & 6.00 & 5.52 & 6.49 \\
+Conductividad (mS/cm) & 1.48 & 1.21 & 1.77 \\
+Flujo (L/min) & 1.79 & 1.31 & 2.30 \\
+Nivel depósito (\textbackslash{}%) & 71.99 & 50.32 & 97.10 \\
+Caudal histórico & 2.01 & 1.07 & 2.96 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{table}[h!]
+\centering
+\caption{Resumen de plantas}
+\begin{tabular}{l c c c}
+\toprule
+Métrica & Promedio & Mínimo & Máximo \
+\midrule
+Crecimiento & 12.76 & 10.09 & 14.98 \\
+Cantidad de frutos & 4.99 & 0 & 10 \\
+Calidad de frutos & 50.71 & 1.29 & 99.42 \\
+Nivel de salud & 83.81 & 70.71 & 99.42 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Alertas del Sistema}
+\begin{table}[h!]
+\centering
+\caption{Resumen de alertas críticas}
+\begin{tabular}{l l l c}
+\toprule
+Zona & Especie & Alerta & Eventos \
+\midrule
+Zona\textbackslash{}_A & Pimientos & Alerta inesperada & 3 \\
+Zona\textbackslash{}_A & Pimientos & Nivel de salud bajo & 8 \\
+Zona\textbackslash{}_A & Tomates & Alerta inesperada & 1 \\
+Zona\textbackslash{}_A & Tomates & Nivel de salud bajo & 9 \\
+Zona\textbackslash{}_B & Pimientos & Alerta inesperada & 3 \\
+Zona\textbackslash{}_B & Pimientos & Nivel de salud bajo & 8 \\
+Zona\textbackslash{}_B & Tomates & Alerta inesperada & 1 \\
+Zona\textbackslash{}_B & Tomates & Nivel de salud bajo & 9 \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\section{Recomendaciones}
+Basado en los datos recopilados...
+\end{document}

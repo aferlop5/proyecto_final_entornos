@@ -55,7 +55,11 @@ def _build_indicator(title: str, value: Optional[float], min_val: float, max_val
 
 def _build_line_chart(rows: List[Dict[str, Any]], metrics: List[str], labels: List[str], colors: List[str], title: str):
     fig = go.Figure()
-    rows_sorted = list(reversed(rows))
+    
+    # Asegurar que las filas con timestamp válido están ordenadas
+    valid_rows = [row for row in rows if _parse_time(row.get("timestamp"))]
+    rows_sorted = sorted(valid_rows, key=lambda r: _parse_time(r.get("timestamp")))
+    
     timestamps = [_parse_time(row.get("timestamp")) for row in rows_sorted]
 
     for metric, label, color in zip(metrics, labels, colors):
@@ -72,8 +76,8 @@ def _build_line_chart(rows: List[Dict[str, Any]], metrics: List[str], labels: Li
 
     fig.update_layout(
         title=title,
-        margin=dict(l=10, r=10, t=40, b=10),
-        legend=dict(orientation="h", y=-0.2),
+        margin=dict(l=10, r=10, t=40, b=40),
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
         height=300,
         xaxis_title="Tiempo",
     )
@@ -201,11 +205,11 @@ def _build_historical(processed: List[Dict[str, Any]]) -> go.Figure:
     figure.update_layout(
         title="Indicadores procesados",
         height=360,
-        margin=dict(l=20, r=40, t=50, b=40),
-        legend=dict(orientation="h", y=-0.2),
+        margin=dict(l=20, r=100, t=50, b=40),
+        legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="right", x=1),
         yaxis=dict(title="Índices", range=[0, 1.05]),
         yaxis2=dict(title="Frutos", overlaying="y", side="right"),
-        yaxis3=dict(title="Necesidad riego", overlaying="y", side="right", position=0.98, range=[0, 1.05]),
+        yaxis3=dict(title="Necesidad riego", overlaying="y", side="right", position=0.9, range=[0, 1.05]),
         xaxis_title="Tiempo",
     )
     return figure
