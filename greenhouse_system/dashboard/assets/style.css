@@ -183,6 +183,19 @@ body {
     color: #2a9d8f;
 }
 
+.alerts-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.alerts-section h2 {
+    margin: 0;
+    font-size: 1.4rem;
+    color: #1d3557;
+}
+
 .alert-section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));

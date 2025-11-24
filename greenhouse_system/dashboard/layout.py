@@ -46,7 +46,13 @@ def create_layout() -> html.Div:
                 ],
                 className="sensor-grid",
             ),
-            html.Div(id="alert-panel", className="alert-section"),
+            html.Section(
+                [
+                    html.H2("Alertas"),
+                    html.Div(id="alert-panel", className="alert-section"),
+                ],
+                className="alerts-section",
+            ),
             html.Section(
                 [
                     html.H2("Evolución histórica"),
