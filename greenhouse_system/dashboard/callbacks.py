@@ -8,7 +8,7 @@ from dash import Dash, Input, Output, dcc, html, no_update
 from dash.exceptions import PreventUpdate
 import plotly.graph_objects as go
 
-from .data_fetcher import DataFetcher
+from greenhouse_system.database.database_setup import DataFetcher
 from greenhouse_system.informes.latex_generator import ReportGenerator
 
 
