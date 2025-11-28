@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.11.19)  20 NOV 2025 01:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.11.10)  27 NOV 2025 11:09
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -156,183 +156,28 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 
 LaTeX Warning: No \author given.
 
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 15.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 15.
-! Misplaced \noalign.
-\midrule ->\noalign 
-                    {\ifnum 0=`}\fi \@aboverulesep =\aboverulesep \global \@...
-l.18 \midrule
-             
-I expect to see \noalign only after the \cr of
-an alignment. Proceed, and I'll ignore this case.
+[1
 
-! Missing } inserted.
-<inserted text> 
-                }
-l.19 T
-      emperatura (°C) & 21.86 & 20.09 & 23.91 \\
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] (./informe_final.aux
+LaTeX Info: Redefining \. on input line 8.
+LaTeX Info: Redefining \% on input line 8.
+) ) 
+Here is how much of TeX's memory you used:
+ 2424 strings out of 478287
+ 39850 string characters out of 5849288
+ 351348 words of memory out of 5000000
+ 20661 multiletter control sequences out of 15000+600000
+ 472899 words of font info for 40 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 55i,6n,62p,174b,363s stack positions out of 5000i,500n,10000p,200000b,80000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></u
+sr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/shar
+e/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/share/texli
+ve/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb>
+Output written on informe_final.pdf (1 page, 48919 bytes).
+PDF statistics:
+ 28 PDF objects out of 1000 (max. 8388607)
+ 16 compressed objects within 1 object stream
+ 0 named destinations out of 1000 (max. 500000)
+ 1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
-! Missing } inserted.
-<inserted text> 
-                }
-l.19 T
-      emperatura (°C) & 21.86 & 20.09 & 23.91 \\
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing } inserted.
-<inserted text> 
-                }
-l.19 T
-      emperatura (°C) & 21.86 & 20.09 & 23.91 \\
-I've inserted something that you may have forgotten.
-(See the <inserted text> above.)
-With luck, this will get me unwedged. But if you
-really didn't forget anything, try typing `2' now; then
-my insertion and my current dilemma will both disappear.
-
-! Missing \cr inserted.
-<inserted text> 
-                \cr 
-l.19 T
-      emperatura (°C) & 21.86 & 20.09 & 23.91 \\
-I'm guessing that you meant to end an alignment here.
-
-! Missing { inserted.
-<inserted text> 
-                {
-l.19 T
-      emperatura (°C) & 21.86 & 20.09 & 23.91 \\
-I've put in what seems to be necessary to fix
-the current column of the current alignment.
-Try to go on, since this might almost work.
-
-! Undefined control sequence.
-\@BTrule ...\doublerulesep \fi \fi \fi \@BTswitch 
-                                                  
-l.19 T
-      emperatura (°C) & 21.86 & 20.09 & 23.91 \\
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Misplaced alignment tab character &.
-l.19 Temperatura (°C) &
-                         21.86 & 20.09 & 23.91 \\
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Misplaced alignment tab character &.
-l.19 Temperatura (°C) & 21.86 &
-                                 20.09 & 23.91 \\
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Misplaced alignment tab character &.
-l.19 Temperatura (°C) & 21.86 & 20.09 &
-                                         23.91 \\
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Misplaced \cr.
-\reserved@c ->\ifnum 0=`{\fi }\cr 
-                                  
-l.20 H
-      umedad (\textbackslash{}%) & 65.01 & 57.08 & 72.87 \\
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-LaTeX Font Info:    Trying to load font information for OMS+cmr on input line 2
-0.
-(/usr/share/texlive/texmf-dist/tex/latex/base/omscmr.fd
-File: omscmr.fd 2019/12/16 v2.5j Standard LaTeX font definitions
-)
-LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 20.
-
-
-LaTeX Warning: Command \textbackslash invalid in math mode on input line 21.
-
-
-LaTeX Warning: Command \textbackslash invalid in math mode on input line 21.
-
-
-LaTeX Warning: Command \textbackslash invalid in math mode on input line 21.
-
-
-LaTeX Warning: Command \textbackslash invalid in math mode on input line 21.
-
-! Misplaced alignment tab character &.
-l.21 ...textbackslash{}_2\textbackslash{}$ (ppm) &
-                                                   447.76 & 400.51 & 499.99 \\
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Misplaced alignment tab character &.
-l.21 ...lash{}_2\textbackslash{}$ (ppm) & 447.76 &
-                                                   400.51 & 499.99 \\
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Misplaced alignment tab character &.
-l.21 ...textbackslash{}$ (ppm) & 447.76 & 400.51 &
-                                                   499.99 \\
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But if some right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Misplaced \cr.
-\reserved@c ->\ifnum 0=`{\fi }\cr 
-                                  
-l.22 I
-      ntensidad de luz & 109.25 & 12.83 & 199.65 \\
-I can't figure out why you would want to use a tab mark
-or \cr or \span just now. If something like a right brace
-up above has ended a previous alignment prematurely,
-you're probably due for more error messages, and you
-might try typing `S' now just to see what is salvageable.
-
-! Misplaced alignment tab character &.
-l.22 Intensidad de luz &
-                         109.25 & 12.83 & 199.65 \\
-I can't figure out why you would want to use a tab mark
-here. If you just want an ampersand, the remedy is
-simple: Just type `I\&' now. But i

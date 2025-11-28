@@ -30,9 +30,9 @@ async def main():
         while True:
             hora = datetime.datetime.now().hour
             for zona, datos in clima_objs.items():
-                await datos["Temperatura"].write_value(round(22 + random.uniform(-2, 2),2))
+                await datos["Temperatura"].write_value(round(22 + random.uniform(-2.5, 2.5),2))
                 await datos["Humedad"].write_value(round(65 + random.uniform(-8, 8),2))
-                await datos["CO2"].write_value(round(450 + random.uniform(-50, 50),2))
+                await datos["CO2"].write_value(round(450 + random.uniform(-55, 55),2))
                 light = 800 if 8 <= hora <= 18 else random.uniform(10, 200)
                 await datos["IntensidadLuz"].write_value(float(round(light,2)))
                 await datos["Presion"].write_value(round(1013 + random.uniform(-5,5),2))

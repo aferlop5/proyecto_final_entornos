@@ -83,7 +83,7 @@ def alerta_critica(temperatura, co2, nivel_salud, luz):
         return "Luz insuficiente"
 
     # Probabilidad de alerta inesperada
-    if random.random() < 0.05:
+    if random.random() < 0.01:
         return "Alerta inesperada"
 
     return None
